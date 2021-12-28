@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity() {
                 NotificationUtil.MSG_CHANNEL_ID,
                 "新消息",
                 "你好，在吗?",
-                NotificationUtil.MSG_GROUP_ID
             )
             nm.notify(666, msgNotification)
 
@@ -72,9 +71,9 @@ class MainActivity : AppCompatActivity() {
                 NotificationUtil.OPPO_CHANNEL_ID,
                 "OPPO",
                 "oppo测试渠道",
-                NotificationUtil.OPPO_GROUP_ID
             )
-            nm.notify(777, oppoNotification)
+            nm.notify(778, oppoNotification)
+
         }, 2000L)
     }
 

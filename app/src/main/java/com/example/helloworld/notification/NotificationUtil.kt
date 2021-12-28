@@ -35,7 +35,6 @@ object NotificationUtil {
         channelId: String,
         contentTitle: String,
         contentText: String,
-        groupId: String
     ): Notification {
         //点按通知操作，进入NotificationActivity
         val intent = Intent(context, NotificationActivity::class.java).apply {
@@ -49,7 +48,6 @@ object NotificationUtil {
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-            .setGroup(groupId)
             .build()
     }
 
