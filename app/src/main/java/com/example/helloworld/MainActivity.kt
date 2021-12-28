@@ -1,15 +1,81 @@
 package com.example.helloworld
 
+import android.app.NotificationChannelGroup
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationManagerCompat
+import com.example.helloworld.notification.NotificationUtil
 
 class MainActivity : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        testNotification()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun testNotification() {
+        findViewById<View>(R.id.rl_container).postDelayed(Runnable {
+            //注册通知渠道
+            NotificationUtil.createNotificationChannel(
+                this,
+                NotificationUtil.MSG_CHANNEL_ID,
+                NotificationUtil.MSG_CHANNEL_NAME,
+                NotificationUtil.MSG_CHANNEL_DESCRIPTION,
+                NotificationUtil.MSG_GROUP_ID
+            )
+            NotificationUtil.createNotificationChannel(
+                this,
+                NotificationUtil.OPPO_CHANNEL_ID,
+                NotificationUtil.OPPO_CHANNEL_NAME,
+                NotificationUtil.OPPO_CHANNEL_DESCRIPTION,
+                NotificationUtil.OPPO_GROUP_ID
+            )
+
+            val nm = NotificationManagerCompat.from(this)
+
+            //注册通知渠道分组
+            nm.createNotificationChannelGroup(
+                NotificationChannelGroup(
+                    NotificationUtil.MSG_GROUP_ID,
+                    NotificationUtil.MSG_GROUP_NAME
+                )
+            )
+
+            nm.createNotificationChannelGroup(
+                NotificationChannelGroup(
+                    NotificationUtil.OPPO_GROUP_ID,
+                    NotificationUtil.OPPO_GROUP_NAME
+                )
+            )
+
+            //发通知
+            val msgNotification = NotificationUtil.createNotification(
+                this,
+                NotificationUtil.MSG_CHANNEL_ID,
+                "新消息",
+                "你好，在吗?",
+                NotificationUtil.MSG_GROUP_ID
+            )
+            nm.notify(666, msgNotification)
+
+            val oppoNotification = NotificationUtil.createNotification(
+                this,
+                NotificationUtil.OPPO_CHANNEL_ID,
+                "OPPO",
+                "oppo测试渠道",
+                NotificationUtil.OPPO_GROUP_ID
+            )
+            nm.notify(777, oppoNotification)
+        }, 2000L)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
