@@ -1,6 +1,7 @@
 package com.example.helloworld
 
 import android.app.NotificationChannelGroup
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
+import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +19,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        findViewById<View>(R.id.btn_lua).setOnClickListener {
+            startActivity(Intent(this, LuaActivity::class.java))
+        }
 
         testNotification()
     }
