@@ -11,8 +11,6 @@ z
 Japp/src/androidTest/java/com/example/helloworld/ExampleInstrumentedTest.kt,5/7/57eeec7da762bf9cb43dc5c208921607e5b0981a
 F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
@@ -24,7 +22,5 @@ X
 settings.gradle,0/5/05efc8b1657769a27696d478ded1e95f38737233
 A
 gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 }
 Mapp/src/main/java/com/example/helloworld/notification/NotificationActivity.kt,b/9/b9bc10bae29e08e31bd73a92af4dc776c4cf62a7

@@ -14,6 +14,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
 
     buildTypes {
@@ -40,4 +44,22 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation "androidx.recyclerview:recyclerview:1.1.0+" //引入包的版本需在1.1.0以上
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // 核心库
+    implementation "com.immomo.mlncore:core:1.0.1"
+    // view、工具桥接库
+    implementation "com.immomo.mls:mln:1.0.1"
+    // 代码生成库
+    annotationProcessor "com.immomo.mls:processor:1.0.0"
+    // 热重载，配合IDEA插件使用
+    debugImplementation "com.immomo.luanative:hotreload:1.0.1"
+    releaseImplementation "com.immomo.luanative:hotreload_empty:1.0.1"
+    // 配合热重载使用
+    debugImplementation "com.google.protobuf:protobuf-lite:3.0.1"
+
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
