@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LuaActivity::class.java))
         }
 
-        testNotification()
+//        testNotification()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

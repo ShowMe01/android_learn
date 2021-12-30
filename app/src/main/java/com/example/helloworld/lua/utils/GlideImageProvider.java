@@ -13,7 +13,7 @@
  * For the full copyright and license information,please view the LICENSE file in the root directory of this source tree.
  */
 
-package com.example.helloworld.lua;
+package com.example.helloworld.lua.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +23,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -39,6 +38,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
+import com.example.helloworld.lua.utils.ResourcesUtils;
 import com.immomo.mls.provider.DrawableLoadCallback;
 import com.immomo.mls.provider.ImageProvider;
 

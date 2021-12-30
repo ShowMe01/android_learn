@@ -5,9 +5,11 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.helloworld.BuildConfig;
-import com.example.helloworld.lua.GlideImageProvider;
-import com.example.helloworld.lua.LuaUtils;
+import com.example.helloworld.lua.utils.GlideImageProvider;
+import com.example.helloworld.lua.utils.LuaUtils;
+import com.immomo.mls.HotReloadHelper;
 import com.immomo.mls.MLSEngine;
+import com.immomo.mls.adapter.MLSQrCaptureAdapter;
 import com.immomo.mls.global.LVConfigBuilder;
 
 public class MyApplication extends Application {
@@ -31,6 +33,7 @@ public class MyApplication extends Application {
                         .build())
                 .setImageProvider(new GlideImageProvider())//lua加载图片工具，不实现的话，图片无法展示
                 .build(true);
+
     }
 
     public static Context getInstance() {
