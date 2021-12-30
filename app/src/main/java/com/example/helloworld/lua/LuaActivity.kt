@@ -2,15 +2,19 @@ package com.example.helloworld.lua
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.helloworld.R
+import com.example.helloworld.lua.utils.LuaUtils
 import com.immomo.mls.InitData
 import com.immomo.mls.MLSInstance
+import java.io.File
 
 class LuaActivity : AppCompatActivity() {
 
     private lateinit var instance: MLSInstance
     private val entryPath = "file://android_asset/hello.lua"
 
+    private val TAG = "LuaActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lua)
