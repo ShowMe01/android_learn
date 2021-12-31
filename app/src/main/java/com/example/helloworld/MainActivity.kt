@@ -24,12 +24,31 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LuaActivity::class.java))
         }
 
+
+
 //        testNotification()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun testNotification() {
         findViewById<View>(R.id.rl_container).postDelayed(Runnable {
+
+            val nm = NotificationManagerCompat.from(this)
+            //注册通知渠道分组，在创建通道之前
+            nm.createNotificationChannelGroup(
+                NotificationChannelGroup(
+                    NotificationUtil.MSG_GROUP_ID,
+                    NotificationUtil.MSG_GROUP_NAME
+                )
+            )
+
+            nm.createNotificationChannelGroup(
+                NotificationChannelGroup(
+                    NotificationUtil.OPPO_GROUP_ID,
+                    NotificationUtil.OPPO_GROUP_NAME
+                )
+            )
+
             //注册通知渠道
             NotificationUtil.createNotificationChannel(
                 this,
@@ -44,23 +63,6 @@ class MainActivity : AppCompatActivity() {
                 NotificationUtil.OPPO_CHANNEL_NAME,
                 NotificationUtil.OPPO_CHANNEL_DESCRIPTION,
                 NotificationUtil.OPPO_GROUP_ID
-            )
-
-            val nm = NotificationManagerCompat.from(this)
-
-            //注册通知渠道分组
-            nm.createNotificationChannelGroup(
-                NotificationChannelGroup(
-                    NotificationUtil.MSG_GROUP_ID,
-                    NotificationUtil.MSG_GROUP_NAME
-                )
-            )
-
-            nm.createNotificationChannelGroup(
-                NotificationChannelGroup(
-                    NotificationUtil.OPPO_GROUP_ID,
-                    NotificationUtil.OPPO_GROUP_NAME
-                )
             )
 
             //发通知
