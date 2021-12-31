@@ -13,25 +13,25 @@ object LuaUtils {
     fun getLuaSdDir(): String = getFileDir().path
 
     fun getLuaRootDir(): String {
-        val path = File(getLuaSdDir(), "luaRoot/").path
+        val path = File(getLuaSdDir(), "luaRoot").path
         Log.d(TAG, "getLuaRootDir: $path")
         return path
     }
 
     fun getLuaImgDir(): String {
-        val path = File(getLuaRootDir(), "luaImg/").path
+        val path = File(getLuaRootDir(), "luaImg").path
         Log.d(TAG, "getLuaImgDir: $path")
         return path
     }
 
     fun getLuaCacheDir(): String {
-        val path = File(getLuaRootDir(), "luaCache/").path
+        val path = File(getLuaRootDir(), "luaCache").path
         Log.d(TAG, "getLuaCacheDir: $path")
         return path
     }
 
     fun getLuaResDir(): String {
-        val path = File(getLuaRootDir(), "luaRes/").path
+        val path = File(getLuaRootDir(), "luaRes").path
         Log.d(TAG, "getLuaResDir: $path")
         return path
     }

@@ -1,16 +1,19 @@
 package com.example.helloworld
 
+import android.Manifest
 import android.app.NotificationChannelGroup
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 
@@ -20,13 +23,30 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        testLua()
+//        testNotification()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    private fun testLua() {
+
+        //请求读写权限
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_DENIED
+        ) {
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                1
+            )
+        }
+
         findViewById<View>(R.id.btn_lua).setOnClickListener {
             startActivity(Intent(this, LuaActivity::class.java))
         }
-
-
-
-//        testNotification()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
