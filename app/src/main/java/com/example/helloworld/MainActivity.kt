@@ -9,11 +9,14 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
+import androidx.annotation.BinderThread
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 
@@ -24,7 +27,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         testLua()
+        testGifWidget()
 //        testNotification()
+    }
+
+    private fun testGifWidget() {
+        findViewById<Button>(R.id.btn_gif_widget).setOnClickListener {
+            startActivity(Intent(this, GifWidgetActivity::class.java))
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
