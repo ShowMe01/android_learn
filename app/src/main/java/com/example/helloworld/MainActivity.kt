@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
@@ -28,7 +29,14 @@ class MainActivity : AppCompatActivity() {
 
         testLua()
         testGifWidget()
+        testConstraintLayout()
 //        testNotification()
+    }
+
+    private fun testConstraintLayout() {
+        findViewById<View>(R.id.btn_constraints).setOnClickListener {
+            startActivity(Intent(this, ConstraintActivity::class.java))
+        }
     }
 
     private fun testGifWidget() {

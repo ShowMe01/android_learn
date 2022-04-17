@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".constraint.ConstraintActivity">
+
+    <Space
+        android:id="@+id/leftSpace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/tvWechat" />
+
+    <Button
+        android:id="@+id/tvWechat"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="weChat"
+        app:layout_constraintLeft_toRightOf="@id/leftSpace"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/midSpace"/>
+
+    <Space
+        android:id="@+id/midSpace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/tvWechat"
+        app:layout_constraintRight_toRightOf="@id/btnQQ"
+        app:layout_constraintHorizontal_weight="2" />
+
+    <Button
+        android:id="@+id/btnQQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="qq"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/midSpace"
+        app:layout_constraintRight_toLeftOf="@id/rightSpace" />
+
+    <Space
+        android:id="@+id/rightSpace"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btnQQ"
+        app:layout_constraintRight_toLeftOf="@id/btnCopy" />
+
+    <Button
+        android:id="@+id/btnCopy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="copy"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/rightSpace"
+        app:layout_constraintRight_toLeftOf="@id/rightSpace2"/>
+
+    <Space
+        android:id="@+id/rightSpace2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btnCopy"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_weight="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

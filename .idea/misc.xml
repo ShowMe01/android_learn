@@ -8,12 +8,14 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3472222222222222" />
         <entry key="app/src/main/res/drawable/ic_timely_msg_logo.xml" value="0.3472222222222222" />
         <entry key="app/src/main/res/layout/activity_animator.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_constraint.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_gif_widget.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_lua.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_parent.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_tool_bar.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/gif_widget.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.4244791666666667" />
         <entry key="app/src/main/res/menu/tool_bar_menu.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3472222222222222" />
