@@ -11,17 +11,16 @@ import com.immomo.mls.HotReloadHelper;
 import com.immomo.mls.MLSEngine;
 import com.immomo.mls.adapter.MLSQrCaptureAdapter;
 import com.immomo.mls.global.LVConfigBuilder;
+import com.tencent.mmkv.MMKV;
 
 public class MyApplication extends Application {
 
     private String TAG = "MyApplication";
-    private static Context mContext;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = getApplicationContext();
-        Log.d(TAG, "onCreate");
+        AppContext.INSTANCE.init(this);
 
         MLSEngine.init(this, BuildConfig.DEBUG)
                 .setLVConfig(new LVConfigBuilder(this)
@@ -34,14 +33,15 @@ public class MyApplication extends Application {
                 .setImageProvider(new GlideImageProvider())//lua加载图片工具，不实现的话，图片无法展示
                 .build(true);
 
+        MMKV.initialize(AppContext.INSTANCE.getAppContext());
     }
 
     public static Context getInstance() {
-        return mContext;
+        return AppContext.INSTANCE.getAppContext();
     }
 
     public static String getPackageNameImpl() {
-        String sPackageName = mContext.getPackageName();
+        String sPackageName = AppContext.INSTANCE.getAppContext().getPackageName();
         if (sPackageName.contains(":")) {
             sPackageName = sPackageName.substring(0, sPackageName.lastIndexOf(":"));
         }

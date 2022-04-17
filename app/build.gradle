@@ -68,4 +68,10 @@ dependencies {
 
     //gif imageView
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+
+    //gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    //mmkv
+    implementation 'com.tencent:mmkv:1.2.13'
 }

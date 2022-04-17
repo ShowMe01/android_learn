@@ -1,15 +1,9 @@
 package com.example.helloworld.gif
 
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
-import android.media.audiofx.EnvironmentalReverb
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.os.Environment
 import android.util.Log
-import android.widget.RemoteViews
-import com.example.helloworld.GifWidget
+import androidx.appcompat.app.AppCompatActivity
 import com.example.helloworld.R
 import java.io.File
 import java.util.*
