@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_event_note_24.xml" value="0.35648148148148145" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.3472222222222222" />
         <entry key="app/src/main/res/drawable/ic_timely_msg_logo.xml" value="0.3472222222222222" />
+        <entry key="app/src/main/res/drawable/icon_widget_logo.xml" value="0.2245" />
         <entry key="app/src/main/res/layout/activity_animator.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/activity_constraint.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_gif_widget.xml" value="0.4036458333333333" />
@@ -18,6 +19,8 @@
         <entry key="app/src/main/res/layout/activity_widget_config.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/config_widget.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/layout/gif_widget.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/layout_widget_preview_small.xml" value="0.41032608695652173" />
+        <entry key="app/src/main/res/layout/tie_app_widget.xml" value="0.41032608695652173" />
         <entry key="app/src/main/res/menu/main_menu.xml" value="0.4244791666666667" />
         <entry key="app/src/main/res/menu/tool_bar_menu.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3472222222222222" />

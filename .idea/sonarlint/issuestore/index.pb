@@ -24,3 +24,13 @@ A
 gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
 }
 Mapp/src/main/java/com/example/helloworld/notification/NotificationActivity.kt,b/9/b9bc10bae29e08e31bd73a92af4dc776c4cf62a7
+h
+8app/src/main/java/com/example/helloworld/MainActivity.kt,b/a/ba13012ef53dafdd2b53b2f78ab4bebbb548fadf
+<
+build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
+q
+Aapp/src/main/java/com/example/helloworld/gif/GifWidgetActivity.kt,8/6/86fabfdd40fda31f4f4e404972a8090d487fd143
+l
+<app/src/main/java/com/example/helloworld/widget/GifWidget.kt,b/5/b5b20e5255a0d409e051683f9a0d85bcd027906f
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
