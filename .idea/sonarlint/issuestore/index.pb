@@ -3,17 +3,12 @@
 local.properties,0/7/0712df971a99ac4d2fccb8e0fb19f377f3374cca
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
->
-app/.gitignore,5/1/51e1c5d383dfaa35e0e7e5873a0a99355a86880f
 k
 ;app/src/test/java/com/example/helloworld/ExampleUnitTest.kt,3/e/3ed5b8855124121afb850f89b5a06c6c9aec1cbe
 z
 Japp/src/androidTest/java/com/example/helloworld/ExampleInstrumentedTest.kt,5/7/57eeec7da762bf9cb43dc5c208921607e5b0981a
 F
 app/proguard-rules.pro,9/e/9e08934d811afe28fbc77aaa3c0d747b94348db9
-:
-
-.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 X
 (gradle/wrapper/gradle-wrapper.properties,f/b/fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 7
@@ -34,3 +29,19 @@ l
 <app/src/main/java/com/example/helloworld/widget/GifWidget.kt,b/5/b5b20e5255a0d409e051683f9a0d85bcd027906f
 @
 app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
+w
+Gapp/src/main/java/com/example/helloworld/widget/WidgetConfigActivity.kt,6/7/671f277380750c0ab49e8f3cd594ad8d9443c9aa
+n
+>app/src/main/java/com/example/helloworld/widget/WidgetModel.kt,5/4/5439cc02152be81a4b6774ab28c22f98ddae631d
+n
+>app/src/main/java/com/example/helloworld/lua/utils/LuaUtils.kt,b/3/b37747e51e8093088ae185ca22fb1a9eb286be2b
+w
+Gapp/src/main/java/com/example/helloworld/application/MyApplication.java,3/6/365ad755874d2f06563634afdec547e30822a675
+r
+Bapp/src/main/java/com/example/helloworld/application/AppContext.kt,2/d/2d21436c38acdc6f8709a8de979ba71a3b32675b
+o
+?app/src/main/java/com/example/helloworld/widget/ConfigWidget.kt,6/c/6c853f971f7f628df91e49a9b29b93470625d8e0
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+o
+?app/src/main/java/com/example/helloworld/widget/TieAppWidget.kt,2/f/2f21c449b25c7b619f7cad654641b4911dabad55
