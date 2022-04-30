@@ -3,6 +3,7 @@ import android.graphics.Bitmap;
 import java.io.InputStream;
 import java.util.Vector;
 
+
 public class GifDecoder {
 
     /**
