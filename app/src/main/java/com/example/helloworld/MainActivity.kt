@@ -18,6 +18,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.gif.GifWidgetActivity
+import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         testGifWidget()
         testConstraintLayout()
 //        testNotification()
+        findViewById<View>(R.id.btnIme).setOnClickListener {
+            startActivity(Intent(this, ImeActivity::class.java))
+        }
     }
 
     private fun testConstraintLayout() {
