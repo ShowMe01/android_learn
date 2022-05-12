@@ -20,6 +20,7 @@ import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
+import com.example.helloworld.web.WebActivity
 
 class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         testGifWidget()
         testConstraintLayout()
 //        testNotification()
+        findViewById<View>(R.id.btn_web).setOnClickListener {
+            startActivity(Intent(this, WebActivity::class.java))
+        }
     }
 
     private fun testConstraintLayout() {

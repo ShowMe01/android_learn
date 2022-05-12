@@ -19,8 +19,6 @@ A
 gradle.properties,2/a/2afbb999f001938c88fa43fc2ef52abf0f8213e4
 }
 Mapp/src/main/java/com/example/helloworld/notification/NotificationActivity.kt,b/9/b9bc10bae29e08e31bd73a92af4dc776c4cf62a7
-h
-8app/src/main/java/com/example/helloworld/MainActivity.kt,b/a/ba13012ef53dafdd2b53b2f78ab4bebbb548fadf
 <
 build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 q
@@ -41,7 +39,5 @@ r
 Bapp/src/main/java/com/example/helloworld/application/AppContext.kt,2/d/2d21436c38acdc6f8709a8de979ba71a3b32675b
 o
 ?app/src/main/java/com/example/helloworld/widget/ConfigWidget.kt,6/c/6c853f971f7f628df91e49a9b29b93470625d8e0
-P
- app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 o
 ?app/src/main/java/com/example/helloworld/widget/TieAppWidget.kt,2/f/2f21c449b25c7b619f7cad654641b4911dabad55
