@@ -16,6 +16,10 @@
             android:name=".web.WebActivity"
             android:exported="false" />
         <activity
+            android:name=".ime.ImeActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing|stateAlwaysHidden" />
+        <activity
             android:name=".widget.WidgetConfigActivity"
             android:exported="false">
             <intent-filter>
@@ -78,6 +82,7 @@
                 android:resource="@xml/gif_widget_info" />
         </receiver>
     </application>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 

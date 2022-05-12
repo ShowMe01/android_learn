@@ -18,6 +18,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.gif.GifWidgetActivity
+import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.web.WebActivity
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 //        testNotification()
         findViewById<View>(R.id.btn_web).setOnClickListener {
             startActivity(Intent(this, WebActivity::class.java))
+        }
+        findViewById<View>(R.id.btnIme).setOnClickListener {
+            startActivity(Intent(this, ImeActivity::class.java))
         }
     }
 
