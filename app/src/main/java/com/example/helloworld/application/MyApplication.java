@@ -1,7 +1,9 @@
 package com.example.helloworld.application;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.example.helloworld.BuildConfig;
@@ -12,6 +14,9 @@ import com.immomo.mls.MLSEngine;
 import com.immomo.mls.adapter.MLSQrCaptureAdapter;
 import com.immomo.mls.global.LVConfigBuilder;
 import com.tencent.mmkv.MMKV;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class MyApplication extends Application {
 
@@ -34,6 +39,43 @@ public class MyApplication extends Application {
                 .build(true);
 
         MMKV.initialize(AppContext.INSTANCE.getAppContext());
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+
+            }
+
+            @Override
+            public void onActivityStarted(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(@NonNull Activity activity) {
+                Log.d(TAG, "onActivityResumed: activity: "+activity.getClass().getName());
+            }
+
+            @Override
+            public void onActivityPaused(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(@NonNull Activity activity) {
+
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(@NonNull Activity activity) {
+
+            }
+        });
+
     }
 
     public static Context getInstance() {

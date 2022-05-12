@@ -21,6 +21,7 @@ import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
+import com.example.helloworld.share.ShareActivity
 import com.example.helloworld.web.WebActivity
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity() {
         }
         findViewById<View>(R.id.btnIme).setOnClickListener {
             startActivity(Intent(this, ImeActivity::class.java))
+        }
+
+        findViewById<View>(R.id.btnShare).setOnClickListener {
+            startActivity(Intent(this,ShareActivity::class.java))
         }
     }
 

@@ -33,10 +33,6 @@ n
 >app/src/main/java/com/example/helloworld/widget/WidgetModel.kt,5/4/5439cc02152be81a4b6774ab28c22f98ddae631d
 n
 >app/src/main/java/com/example/helloworld/lua/utils/LuaUtils.kt,b/3/b37747e51e8093088ae185ca22fb1a9eb286be2b
-w
-Gapp/src/main/java/com/example/helloworld/application/MyApplication.java,3/6/365ad755874d2f06563634afdec547e30822a675
-r
-Bapp/src/main/java/com/example/helloworld/application/AppContext.kt,2/d/2d21436c38acdc6f8709a8de979ba71a3b32675b
 o
 ?app/src/main/java/com/example/helloworld/widget/ConfigWidget.kt,6/c/6c853f971f7f628df91e49a9b29b93470625d8e0
 o
