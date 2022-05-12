@@ -15,12 +15,20 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/sendBinaryContent"
+        android:id="@+id/sendBitmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/sendText"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="send binary content"
+        android:text="send bitmap"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/send_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sendBitmap"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="send file" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

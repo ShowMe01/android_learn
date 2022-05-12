@@ -25,8 +25,6 @@ q
 Aapp/src/main/java/com/example/helloworld/gif/GifWidgetActivity.kt,8/6/86fabfdd40fda31f4f4e404972a8090d487fd143
 l
 <app/src/main/java/com/example/helloworld/widget/GifWidget.kt,b/5/b5b20e5255a0d409e051683f9a0d85bcd027906f
-@
-app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164
 w
 Gapp/src/main/java/com/example/helloworld/widget/WidgetConfigActivity.kt,6/7/671f277380750c0ab49e8f3cd594ad8d9443c9aa
 n
