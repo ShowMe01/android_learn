@@ -35,3 +35,7 @@ o
 ?app/src/main/java/com/example/helloworld/widget/ConfigWidget.kt,6/c/6c853f971f7f628df91e49a9b29b93470625d8e0
 o
 ?app/src/main/java/com/example/helloworld/widget/TieAppWidget.kt,2/f/2f21c449b25c7b619f7cad654641b4911dabad55
+r
+Bapp/src/main/java/com/example/helloworld/application/AppContext.kt,2/d/2d21436c38acdc6f8709a8de979ba71a3b32675b
+@
+app/build.gradle,f/4/f4a01d6a4fcb971362ec00a83903fd3902f52164

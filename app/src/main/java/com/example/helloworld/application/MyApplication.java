@@ -27,7 +27,7 @@ public class MyApplication extends Application {
         super.onCreate();
         AppContext.INSTANCE.init(this);
 
-        MLSEngine.init(this, BuildConfig.DEBUG)
+        /*MLSEngine.init(this, BuildConfig.DEBUG)
                 .setLVConfig(new LVConfigBuilder(this)
                         .setSdcardDir(LuaUtils.INSTANCE.getLuaSdDir())  //设置sdcard目录
                         .setRootDir(LuaUtils.INSTANCE.getLuaRootDir())    //设置lua根目录
@@ -36,7 +36,7 @@ public class MyApplication extends Application {
                         .setGlobalResourceDir(LuaUtils.INSTANCE.getLuaResDir())  //设置资源文件目录
                         .build())
                 .setImageProvider(new GlideImageProvider())//lua加载图片工具，不实现的话，图片无法展示
-                .build(true);
+                .build(true);*/
 
         MMKV.initialize(AppContext.INSTANCE.getAppContext());
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {

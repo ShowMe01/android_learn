@@ -17,18 +17,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.helloworld.constraint.ConstraintActivity
+import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
+import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.share.ShareActivity
 import com.example.helloworld.web.WebActivity
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewBinding: ActivityMainBinding
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
         testLua()
         testGifWidget()
@@ -42,7 +48,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.btnShare).setOnClickListener {
-            startActivity(Intent(this,ShareActivity::class.java))
+            startActivity(Intent(this, ShareActivity::class.java))
+        }
+
+        viewBinding.btnLayoutInflater.setOnClickListener {
+            startActivity(Intent(this, LayoutInflaterActivity::class.java))
         }
     }
 

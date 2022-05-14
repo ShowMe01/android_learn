@@ -54,6 +54,13 @@
         android:text="btnShare"
         app:layout_constraintTop_toBottomOf="@id/btnIme"
         app:layout_constraintLeft_toLeftOf="parent" />
+    <Button
+        android:id="@+id/btnLayoutInflater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="btnLayoutInflater"
+        app:layout_constraintTop_toBottomOf="@id/btnShare"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <RelativeLayout
         android:id="@+id/rl_container"
