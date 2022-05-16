@@ -4,6 +4,6 @@
         name="my_videos"
         path="videos/" />
     <files-path
-        name="images/"
-        path="my_images" />
+        name="my_images"
+        path="images/" />
 </paths>

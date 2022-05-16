@@ -6,10 +6,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
+import android.text.TextUtils
 import android.widget.Toast
-import androidx.core.text.buildSpannedString
+import androidx.core.content.FileProvider
 import com.example.helloworld.application.AppContext
+import com.example.helloworld.share.UriUtils.*
+import java.io.File
 
 
 object ShareUtils {
@@ -17,6 +21,9 @@ object ShareUtils {
     const val PACKAGE_MOBILE_QQ = "com.tencent.mobileqq"
     const val ACTIVITY_MOBILE_QQ = "com.tencent.mobileqq.activity.JumpActivity"
 
+    const val MIME_TYPE_IMG_JPEG = "image/jpg"
+    const val MIME_TYPE_IMG_PNG = "image/png"
+    const val MIME_TYPE_VIDEO_MP4 = "video/mp4"
 
     /**
      * @param text share content
@@ -167,19 +174,52 @@ object ShareUtils {
         if (isAppInstalled(dstPkg)) {
             val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT")
+//            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT")
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             shareIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             shareIntent.type = type
+            shareIntent.putExtra(Intent.EXTRA_TITLE, panelTitle)
+
             // 遍历所有支持发送图片的应用。找到需要的应用
             val componentName = ComponentName(
                 dstPkg,
                 dstCls
             )
             shareIntent.component = componentName
-            context.startActivity(Intent.createChooser(shareIntent, panelTitle))
+//            context.startActivity(Intent.createChooser(shareIntent, panelTitle))
+            context.startActivity(shareIntent)
         } else {
             Toast.makeText(context, "您未安装该应用", Toast.LENGTH_LONG).show()
         }
     }
+
+    fun getFileUri(context: Context, file:File): Uri? {
+        var uri:Uri? = null
+        // 低版本直接用 Uri.fromFile
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            uri = Uri.fromFile(file);
+        } else {
+            // 使用 FileProvider 会在某些 app 下不支持（在使用FileProvider 方式情况下QQ不能支持图片、视频分享，微信不支持视频分享）
+            uri = FileProvider.getUriForFile(context,
+                "${context.packageName}.fileprovider",
+                file)
+
+            val cR = context.contentResolver
+            uri?.let {
+                val fileType = cR.getType(it)
+            // 使用 MediaStore 的 content:// 而不是自己 FileProvider 提供的uri，不然有些app无法适配
+                if (!TextUtils.isEmpty(fileType)){
+                    if (fileType?.contains("video/") == true){
+                        uri = getVideoContentUri(context, file);
+                    }else if (fileType?.contains("image/") == true){
+                        uri = getImageContentUri(context, file);
+                    }else if (fileType?.contains("audio/") == true){
+                        uri = getAudioContentUri(context, file);
+                    }
+                }
+            }
+        }
+        return uri
+    }
+
 }

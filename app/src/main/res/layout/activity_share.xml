@@ -24,11 +24,26 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/send_file"
+        android:id="@+id/sendVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/sendBitmap"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="send file" />
+        android:text="send video" />
 
+    <Button
+        android:id="@+id/sendVideoWithSystem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sendVideo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="send video with system" />
+
+    <Button
+        android:id="@+id/sendVideoKuaishou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sendVideoWithSystem"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="send video kuaishou" />
 </androidx.constraintlayout.widget.ConstraintLayout>
