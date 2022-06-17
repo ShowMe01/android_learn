@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -41,7 +42,6 @@ class ShareActivity : AppCompatActivity() {
                 ShareUtils.sendFileToApp(
                     this,
                     uri,
-                    ShareUtils.MIME_TYPE_IMG_JPEG,
                     PlatformUtil.PACKAGE_SINA,
                     PlatformUtil.ACTIVITY_SHARE_SINA_CONTENT, "分享"
                 )
@@ -49,16 +49,27 @@ class ShareActivity : AppCompatActivity() {
         }
 
         binding.sendVideoWithSystem.setOnClickListener {
-            val srcFile = File(filesDir, "videos/who_die_first.mp4")
-            val uri: Uri? = FileProvider.getUriForFile(this, "${packageName}.fileprovider", srcFile)
-            val shareIntent = Intent()
+            val srcFile = File(filesDir, "videos/who_die_first_1.mp4")
+            val dstFile = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), "who_die_first_2.mp4")
+            Log.d(TAG, "onCreate: dstFile:${dstFile.absolutePath}")
+            FileUtil.copyFile(srcFile,dstFile)
+            val uri: Uri? = FileProvider.getUriForFile(this, "${packageName}.fileprovider", dstFile)
+            ShareUtils.sendFileToApp(
+                this,
+                uri!!,
+                ShareUtils.PACKAGE_SINA_WEIBO,
+                ShareUtils.ACTIVITY_SHARE_SINA_WEIBO_CONTENT,
+                "分享"
+            )
+            Log.d(TAG, "onCreate: uri:${uri}")
+            /*val shareIntent = Intent()
             shareIntent.action = Intent.ACTION_SEND
 //            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "EXTRA_SUBJECT")
             shareIntent.putExtra(Intent.EXTRA_STREAM, uri)
             intent.putExtra(Intent.EXTRA_TEXT, "Test Text String !!")
             shareIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             shareIntent.type = "video/mp4"
-            startActivity(Intent.createChooser(shareIntent, "系统分享"))
+            startActivity(Intent.createChooser(shareIntent, "系统分享"))*/
         }
 
         binding.sendVideo.setOnClickListener {
