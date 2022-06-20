@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import kotlin.math.min
 
 class CustomLayoutManager : RecyclerView.LayoutManager() {
 
@@ -92,6 +93,15 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
      * 简单复用：
      *  1.判断滑动后哪些HolderView需要回收，对其调用removeAndRecycleView(child, recycler)
      *  2.使用 recycler.getViewForPosition(position) 从缓存中获取HolderView填充空白区域
+     * 复杂复用：
+     *  1.回收view部分相同，都是将即将不可见的view移除。
+     *  2.添加view部分有修改
+     *      2.1 不再使用offsetChildrenVertical处理滑动，而是先将所有view都detach移除，
+     *      2.2 重新判断所有view可见性，并按移动后的位置添加。
+     *      这样的好处是，可以将简单的滑动替换为各种复杂的图形变换，如穿插缩放、旋转等
+     *  3.继续优化回收
+     *      3.1 回收时仅回收即将不可见view、可见的view则直接重新布局
+     *      3.2 对于所有可见的view，判断其是否已添加，若已添加则重新布局，否则从回收池中获取再布局
      */
     override fun scrollVerticallyBy(
         dy: Int,
@@ -107,8 +117,8 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
             travel = mTotalHeight - getVerticalSpace() - mScrollY
         }
 
-        //2.遍历所有当前可见HolderView，移除即将不可见的
-        for (i in childCount-1 downTo 0) {
+        //2.遍历所有当前可见HolderView，回收即将不可见的
+        for (i in 0 until childCount) {
             val view = getChildAt(i) ?: continue
             if (travel > 0) {
                 if (getDecoratedBottom(view) - travel < 0) {
@@ -123,56 +133,55 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
             }
         }
 
-        //3.添加即将可见的
-        val screenRect = getVisibleArea(travel)
+        //TODO 不要全部detach 对于一直可见的view直接重新布局
+
+        //3.将剩余可见view都detach，然后统一重新添加
+        val firstVisibleView = getChildAt(0) ?: return travel
+        val lastVisibleView = getChildAt(childCount - 1) ?: return travel
+        detachAndScrapAttachedViews(recycler)
+        mScrollY += travel
+        val visibleArea = getVisibleArea()
         if (travel > 0) {
-            val lastView = getChildAt(childCount - 1) ?: return dy
-            //minPos第一个即将可见的位置
-            val minPos = getPosition(lastView) + 1
+            val minPos = getPosition(firstVisibleView)
             for (i in minPos until itemCount) {
-                val rect = getItemInitialLayout(i)
-                if (Rect.intersects(rect, screenRect)) {
-                    val view = recycler.getViewForPosition(i)
-                    addView(view)
-                    measureChildWithMargins(view, 0, 0)
-                    //这里view的位置，都是以RecyclerView左上角为基准
-                    layoutDecorated(
-                        view,
-                        rect.left,
-                        rect.top - mScrollY,
-                        rect.right,
-                        rect.bottom - mScrollY
-                    )
-                } else {
-                    break
-                }
+                insertView(i, visibleArea, recycler, false)
             }
         } else {
-            val firstVisibleView = getChildAt(0) ?: return dy
-            val maxAdapterPos = getPosition(firstVisibleView) - 1
-            for (i in maxAdapterPos downTo 0) {
-                val itemRect = getItemInitialLayout(i)
-                if (Rect.intersects(itemRect, screenRect)) {
-                    val view = recycler.getViewForPosition(i)
-                    //下滑时，顶部需要填充view，所以要往最前面加
-                    addView(view, 0)
-                    measureChildWithMargins(view, 0, 0)
-                    layoutDecorated(
-                        view,
-                        itemRect.left,
-                        itemRect.top - mScrollY,
-                        itemRect.right,
-                        itemRect.bottom - mScrollY
-                    )
-                } else {
-                    break
-                }
+            val maxPos = getPosition(lastVisibleView)
+            //永远注意 这里遍历的顺序和addView的顺序
+            for (i in maxPos downTo 0) {
+                insertView(i, visibleArea, recycler, true)
             }
         }
 
-        mScrollY += travel
-        offsetChildrenVertical(-travel)
         return travel
+    }
+
+    private fun insertView(
+        adapterPos: Int,
+        visibleArea: Rect,
+        recycler: RecyclerView.Recycler,
+        addToFirst: Boolean
+    ) {
+        val itemRect = getItemInitialLayout(adapterPos)
+        if (Rect.intersects(itemRect, visibleArea)) {
+            val itemView = recycler.getViewForPosition(adapterPos)
+            if (addToFirst) {
+                addView(itemView, 0)
+            } else {
+                addView(itemView)
+            }
+            measureChildWithMargins(itemView, 0, 0)
+            layoutDecorated(
+                itemView,
+                itemRect.left,
+                itemRect.top - mScrollY,
+                itemRect.right,
+                itemRect.bottom - mScrollY
+            )
+        } else {
+            //这里不能直接break
+        }
     }
 
     private fun getVerticalSpace(): Int {
@@ -189,12 +198,15 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
         return mItemRect
     }
 
-    private fun getVisibleArea(travel: Int): Rect {
+    /**
+     * 获取可见区域，以第一个item左上角为原点
+     */
+    private fun getVisibleArea(): Rect {
         mRvRect.set(
             paddingLeft,
-            paddingTop + mScrollY + travel,
+            paddingTop + mScrollY,
             width - paddingRight,
-            getVerticalSpace() + mScrollY + travel
+            getVerticalSpace() + mScrollY
         )
         return mRvRect
     }
