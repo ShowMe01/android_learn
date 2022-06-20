@@ -16,7 +16,7 @@ class RvActivity : AppCompatActivity() {
         val data = generateData()
         viewBinding.rv.adapter = RvAdapter(data)
         viewBinding.rv.layoutManager = CustomLayoutManager()
-
+//        viewBinding.rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
     private fun generateData(): List<String> {
