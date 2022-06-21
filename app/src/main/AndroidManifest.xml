@@ -17,6 +17,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".rv.RvActivity"
+            android:screenOrientation="landscape"
             android:exported="false" />
 
         <provider

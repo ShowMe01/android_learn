@@ -14,16 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.helloworld.R;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CoverFlowAdapter extends RecyclerView.Adapter<CoverFlowAdapter.NormalHolder> {
 
     private final Context mContext;
-    private final ArrayList<String> mDatas;
-    private int mCreatedHolder=0;
-    private int[] mPics = {R.mipmap.item1,R.mipmap.item2,R.mipmap.item3,R.mipmap.item4,
-            R.mipmap.item5,R.mipmap.item6};
-    public CoverFlowAdapter(Context context, ArrayList<String> datas) {
+    private List<String> mDatas;
+    private int mCreatedHolder = 0;
+    private int[] mPics = {R.mipmap.item1, R.mipmap.item2, R.mipmap.item3, R.mipmap.item4,
+            R.mipmap.item5, R.mipmap.item6};
+
+    public CoverFlowAdapter(Context context, List<String> datas) {
         mContext = context;
         mDatas = datas;
     }
@@ -31,7 +32,7 @@ public class CoverFlowAdapter extends RecyclerView.Adapter<CoverFlowAdapter.Norm
     @Override
     public NormalHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         mCreatedHolder++;
-        Log.d("qijian", "onCreateViewHolder num:"+mCreatedHolder);
+        Log.d("qijian", "onCreateViewHolder num:" + mCreatedHolder);
         LayoutInflater inflater = LayoutInflater.from(mContext);
         return new NormalHolder(inflater.inflate(R.layout.item_coverflow, parent, false));
     }
@@ -41,7 +42,7 @@ public class CoverFlowAdapter extends RecyclerView.Adapter<CoverFlowAdapter.Norm
         Log.d("qijian", "onBindViewHolder");
         NormalHolder normalHolder = holder;
         normalHolder.mTV.setText(mDatas.get(position));
-        normalHolder.mImg.setImageDrawable(mContext.getResources().getDrawable(mPics[position%mPics.length]));
+        normalHolder.mImg.setImageDrawable(mContext.getResources().getDrawable(mPics[position % mPics.length]));
     }
 
     @Override

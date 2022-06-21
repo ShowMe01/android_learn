@@ -14,8 +14,8 @@ class RvActivity : AppCompatActivity() {
         viewBinding = ActivityRvBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
         val data = generateData()
-        viewBinding.rv.adapter = RvAdapter(data)
-        viewBinding.rv.layoutManager = CustomLayoutManager()
+        viewBinding.rv.adapter = CoverFlowAdapter(this, data)
+        viewBinding.rv.layoutManager = GalleryLayoutManager()
 //        viewBinding.rv.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
