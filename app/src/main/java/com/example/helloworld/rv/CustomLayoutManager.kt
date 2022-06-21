@@ -11,7 +11,7 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
 
     private val TAG = "CustomLayoutManager"
 
-    private val mHasAttachedItems = SparseBooleanArray()
+    private val mHasAttachedItems = HashMap<Int, Boolean>()
 
     /**
      *  简单处理，因为每个item宽高一致，且布局规则相同，所以可以动态计算
@@ -61,6 +61,9 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
             return
         }
         mHasAttachedItems.clear()
+//        repeat(itemCount) { pos->
+//            mHasAttachedItems.put(pos, false)
+//        }
 
         //0.每个item都相同的情况下，可以预先计算item宽高、每个item位置
         val itemView = recycler.getViewForPosition(0)
@@ -82,7 +85,6 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
                 layoutRect.right,
                 layoutRect.bottom
             )
-            mHasAttachedItems.put(pos, true)
         }
 
         mTotalHeight = Math.max(getItemInitialLayout(itemCount - 1).bottom, getVerticalSpace())
@@ -113,8 +115,8 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
         recycler: RecyclerView.Recycler,
         state: RecyclerView.State
     ): Int {
-        Log.d(TAG, "scrollVerticallyBy: dy:${dy}")
-        if (itemCount <= 0 ) {
+        Log.d(TAG, "scrollVerticallyBy: dy:${dy} , mapSize:${mHasAttachedItems.size}")
+        if (itemCount <= 0) {
             return dy
         }
 
@@ -129,44 +131,72 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
         mScrollY += travel
         val visibleArea = getVisibleArea()
 
-        //2.遍历所有当前可见HolderView，回收即将不可见的
+        //2.遍历所有当前可见HolderView，回收即将不可见的、重新布局一直可见的
+        Log.d(TAG, "scrollVerticallyBy: beforeRemove childCount:${childCount}")
         for (i in 0 until childCount) {
             val view = getChildAt(i) ?: continue
             val adapterPos = getPosition(view)
             val childRect = getItemInitialLayout(adapterPos)
             if (!Rect.intersects(childRect, visibleArea)) {
-                removeAndRecycleView(view,recycler)
-                continue
+                removeAndRecycleView(view, recycler)
+                mHasAttachedItems.put(adapterPos, false)
+            } else {
+                layoutDecorated(
+                    view,
+                    childRect.left,
+                    childRect.top - mScrollY,
+                    childRect.right,
+                    childRect.bottom - mScrollY
+                )
+                mHasAttachedItems.put(adapterPos, true)
             }
         }
 
-        //3.将剩余可见view都detach，然后统一重新添加
+        //3.统一重新判断view可见性
+        Log.d(TAG, "scrollVerticallyBy: afterRemove childCount:${childCount}")
+       /* if (travel > 0) {
+             val minPos = getPosition(firstVisibleView)
+             for (i in minPos until itemCount) {
+                 insertView(i, visibleArea, recycler, false)
+             }
+         } else {
+             val maxPos = getPosition(lastVisibleView)
+             //永远注意 这里遍历的顺序和addView的顺序
+             for (i in maxPos downTo 0) {
+                 insertView(i, visibleArea, recycler, true)
+             }
+         }*/
+        //3.1 根据滑动，添加即将出现的view
         val firstVisibleView = getChildAt(0) ?: return travel
         val lastVisibleView = getChildAt(childCount - 1) ?: return travel
-        detachAndScrapAttachedViews(recycler)
         if (travel > 0) {
-            val minPos = getPosition(firstVisibleView)
-            for (i in minPos until itemCount) {
-                insertView(i, visibleArea, recycler, false)
+            val minPos = getPosition(lastVisibleView) + 1
+            for (adapterPos in minPos until itemCount) {
+               val isSuc = insertView(adapterPos,visibleArea,recycler,false)
+                if (!isSuc) break
             }
         } else {
-            val maxPos = getPosition(lastVisibleView)
-            //永远注意 这里遍历的顺序和addView的顺序
-            for (i in maxPos downTo 0) {
-                insertView(i, visibleArea, recycler, true)
+            val maxPos = getPosition(firstVisibleView) - 1
+            for (adapterPos in maxPos downTo 0) {
+                val isSuc = insertView(adapterPos, visibleArea, recycler, true)
+                if (!isSuc) break
             }
         }
 
         return travel
     }
 
+    /**
+     * @return true 代表此次插入成功
+     */
     private fun insertView(
         adapterPos: Int,
         visibleArea: Rect,
         recycler: RecyclerView.Recycler,
         addToFirst: Boolean
-    ) {
+    ): Boolean {
         val itemRect = getItemInitialLayout(adapterPos)
+        val hasAttached = mHasAttachedItems[adapterPos] ?: false
         if (Rect.intersects(itemRect, visibleArea)) {
             val itemView = recycler.getViewForPosition(adapterPos)
             if (addToFirst) {
@@ -184,6 +214,9 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
             )
             itemView.rotationY = itemView.rotationY + 1
             mHasAttachedItems[adapterPos] = true
+            return true
+        } else {
+            return false
         }
     }
 
