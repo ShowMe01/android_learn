@@ -40,6 +40,10 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
      */
     private var mStartX = 0
 
+    companion object {
+        const val M_MAX_ROTATION_Y = 30.0f
+    }
+
     override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams {
         Log.d(TAG, "generateDefaultLayoutParams: ")
         return RecyclerView.LayoutParams(
@@ -91,8 +95,8 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
         var travel = dx
         if (mScrollX + dx < 0) {
             travel = -mScrollX
-        } else if (mScrollX + dx > mTotalWidth - getHorizontalSpace()) {
-            travel = mTotalWidth - getHorizontalSpace() - mScrollX
+        } else if (mScrollX + dx > getMaxOffset()) {
+            travel = getMaxOffset() - mScrollX
         }
 
         mScrollX += travel
@@ -233,8 +237,23 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
      */
     private fun handleViewTransform(child: View, moveX: Int) {
         val radio = computeScale(moveX)
+        val rotationY = computeRotationY(moveX)
         child.scaleX = radio
         child.scaleY = radio
+
+        child.rotationY = rotationY
+    }
+
+    private fun computeRotationY(moveX: Int): Float {
+        var rotationY = -M_MAX_ROTATION_Y * moveX / getIntervalWidth()
+        if (Math.abs(rotationY) > M_MAX_ROTATION_Y) {
+            if (rotationY > 0) {
+                rotationY = M_MAX_ROTATION_Y
+            } else {
+                rotationY = -M_MAX_ROTATION_Y
+            }
+        }
+        return rotationY
     }
 
     private fun computeScale(x: Int): Float {
@@ -242,5 +261,32 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
         if (scale < 0) scale = 0f
         if (scale > 1) scale = 1f
         return scale
+    }
+
+    private fun getMaxOffset(): Int {
+        return (itemCount - 1) * getIntervalWidth()
+    }
+
+    /**
+     * @param distance 本次实际滑动距离
+     * @return 调整后的滑动距离，将distance调整为刚好使某个item居中
+     */
+    fun calculateDistance(velocityX: Int, distance: Double): Double {
+        val extra = mScrollX % getIntervalWidth()
+        var result = distance
+        if (velocityX > 0) {
+            if (distance < mIntervalWidth) {
+                result = (mIntervalWidth - extra).toDouble()
+            } else {
+                result = distance - (distance % mIntervalWidth) - extra
+            }
+        } else {
+            if (distance < getIntervalWidth()) {
+                result = extra.toDouble()
+            } else {
+                result = distance - distance % getIntervalWidth() + extra
+            }
+        }
+        return result
     }
 }

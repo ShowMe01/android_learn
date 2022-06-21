@@ -12,6 +12,7 @@ class GalleyRecyclerView @JvmOverloads constructor(
     init {
         isChildrenDrawingOrderEnabled = true
     }
+
     private val TAG = "GalleyRecyclerView"
 
     override fun getChildDrawingOrder(childCount: Int, i: Int): Int {
@@ -30,5 +31,20 @@ class GalleyRecyclerView @JvmOverloads constructor(
         return layoutManager as GalleryLayoutManager
     }
 
+    override fun fling(velocityX: Int, velocityY: Int): Boolean {
+        //缩小滚动距离
+        Log.d(TAG, "fling: init velocityX:${velocityX}")
+        var flingX = (velocityX * 0.7f).toInt()
+        val manger = getGalleryLayoutManager()
+        val distance: Double = FlingUtils.getSplineFlingDistance(flingX)
+        val newDistance = manger.calculateDistance(velocityX, distance)
+        val fixVelocityX: Int = FlingUtils.getVelocity(newDistance)
+        flingX = if (velocityX > 0) {
+            fixVelocityX
+        } else {
+            -fixVelocityX
+        }
+        return super.fling(flingX, velocityY)
+    }
 
 }
