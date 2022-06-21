@@ -2,6 +2,7 @@ package com.example.helloworld.rv
 
 import android.graphics.Rect
 import android.util.Log
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -106,13 +107,14 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
             if (!Rect.intersects(childRect, visibleArea)) {
                 removeAndRecycleView(view, recycler)
             } else {
-                layoutDecorated(
+                layoutDecoratedWithMargins(
                     view,
                     childRect.left - mScrollX,
                     childRect.top,
                     childRect.right - mScrollX,
                     childRect.bottom
                 )
+                handleViewTransform(view, childRect.left - mStartX - mScrollX)
             }
         }
 
@@ -162,6 +164,7 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
                 itemRect.right - mScrollX,
                 itemRect.bottom
             )
+            handleViewTransform(itemView, itemRect.left - mStartX - mScrollX)
             return true
         } else {
             return false
@@ -206,5 +209,38 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
 
     private fun getIntervalWidth(): Int {
         return mItemWidth / 2
+    }
+
+    fun getCenterPosition(): Int {
+        var pos = mScrollX / getIntervalWidth()
+        val more = mScrollX % getIntervalWidth()
+        if (more > getIntervalWidth() * 0.5) {
+            pos++
+        }
+        return pos
+    }
+
+    fun getFirstPosition(): Int {
+        if (childCount < 0) {
+            return 0
+        }
+        val firstVisibleView = getChildAt(0) ?: return 0
+        return getPosition(firstVisibleView)
+    }
+
+    /**
+     * 在此方法中处理图形变换
+     */
+    private fun handleViewTransform(child: View, moveX: Int) {
+        val radio = computeScale(moveX)
+        child.scaleX = radio
+        child.scaleY = radio
+    }
+
+    private fun computeScale(x: Int): Float {
+        var scale = 1 - Math.abs(x * 1.0f / (8f * getIntervalWidth()))
+        if (scale < 0) scale = 0f
+        if (scale > 1) scale = 1f
+        return scale
     }
 }
