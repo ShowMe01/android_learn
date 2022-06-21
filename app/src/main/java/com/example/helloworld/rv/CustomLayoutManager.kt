@@ -2,13 +2,16 @@ package com.example.helloworld.rv
 
 import android.graphics.Rect
 import android.util.Log
+import android.util.SparseBooleanArray
 import android.view.ViewGroup
+import androidx.core.util.set
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.math.min
 
 class CustomLayoutManager : RecyclerView.LayoutManager() {
 
     private val TAG = "CustomLayoutManager"
+
+    private val mHasAttachedItems = SparseBooleanArray()
 
     /**
      *  简单处理，因为每个item宽高一致，且布局规则相同，所以可以动态计算
@@ -57,6 +60,7 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
         if (itemCount == 0) {
             return
         }
+        mHasAttachedItems.clear()
 
         //0.每个item都相同的情况下，可以预先计算item宽高、每个item位置
         val itemView = recycler.getViewForPosition(0)
@@ -78,6 +82,7 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
                 layoutRect.right,
                 layoutRect.bottom
             )
+            mHasAttachedItems.put(pos, true)
         }
 
         mTotalHeight = Math.max(getItemInitialLayout(itemCount - 1).bottom, getVerticalSpace())
@@ -109,6 +114,10 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
         state: RecyclerView.State
     ): Int {
         Log.d(TAG, "scrollVerticallyBy: dy:${dy}")
+        if (itemCount <= 0 ) {
+            return dy
+        }
+
         //1.限制边界滑动
         var travel = dy
         if (mScrollY + dy < 0) {
@@ -117,30 +126,24 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
             travel = mTotalHeight - getVerticalSpace() - mScrollY
         }
 
+        mScrollY += travel
+        val visibleArea = getVisibleArea()
+
         //2.遍历所有当前可见HolderView，回收即将不可见的
         for (i in 0 until childCount) {
             val view = getChildAt(i) ?: continue
-            if (travel > 0) {
-                if (getDecoratedBottom(view) - travel < 0) {
-                    removeAndRecycleView(view, recycler)
-                    continue
-                }
-            } else {
-                if (getDecoratedTop(view) - travel > getVerticalSpace()) {
-                    removeAndRecycleView(view, recycler)
-                    continue
-                }
+            val adapterPos = getPosition(view)
+            val childRect = getItemInitialLayout(adapterPos)
+            if (!Rect.intersects(childRect, visibleArea)) {
+                removeAndRecycleView(view,recycler)
+                continue
             }
         }
-
-        //TODO 不要全部detach 对于一直可见的view直接重新布局
 
         //3.将剩余可见view都detach，然后统一重新添加
         val firstVisibleView = getChildAt(0) ?: return travel
         val lastVisibleView = getChildAt(childCount - 1) ?: return travel
         detachAndScrapAttachedViews(recycler)
-        mScrollY += travel
-        val visibleArea = getVisibleArea()
         if (travel > 0) {
             val minPos = getPosition(firstVisibleView)
             for (i in minPos until itemCount) {
@@ -172,15 +175,15 @@ class CustomLayoutManager : RecyclerView.LayoutManager() {
                 addView(itemView)
             }
             measureChildWithMargins(itemView, 0, 0)
-            layoutDecorated(
+            layoutDecoratedWithMargins(
                 itemView,
                 itemRect.left,
                 itemRect.top - mScrollY,
                 itemRect.right,
                 itemRect.bottom - mScrollY
             )
-        } else {
-            //这里不能直接break
+            itemView.rotationY = itemView.rotationY + 1
+            mHasAttachedItems[adapterPos] = true
         }
     }
 
