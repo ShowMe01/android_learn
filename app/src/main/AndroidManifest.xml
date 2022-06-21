@@ -101,6 +101,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/gif_widget_info" />
         </receiver>
+
+        <activity android:name=".rv.CoverFlowActivity"
+            android:screenOrientation="landscape"/>
     </application>
 
 </manifest>

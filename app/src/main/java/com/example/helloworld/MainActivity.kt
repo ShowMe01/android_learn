@@ -22,16 +22,20 @@ import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
+import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
 import com.example.helloworld.share.ShareActivity
 import com.example.helloworld.web.WebActivity
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var viewBinding: ActivityMainBinding
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
         testLua()
         testGifWidget()
         testConstraintLayout()
@@ -49,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.btnRv).setOnClickListener {
             startActivity(Intent(this, RvActivity::class.java))
+        }
+
+        viewBinding.btnGallery.setOnClickListener {
+            startActivity(Intent(this, CoverFlowActivity::class.java))
         }
     }
 
