@@ -19,3 +19,9 @@ root 在不为空时，resource布局中的layout_xxx等attributes才会生效�
 因为Recyclerview会自行控制View的添加和移除（为了效率复用View）
 2.了解了Recyclerview的大致运行结构。Recyclerview作为父布局，LayoutManager作为布局管理，Adapter作为数据和View之间的
 适配器。Recyclerview只会将当前展示的View添加到Recyclerview中，不展示的则移除。
+
+
+#学习自定义layoutManager
+资料：
+1.https://wiresareobsolete.com/2014/09/building-a-recyclerview-layoutmanager-part-1/
+2.https://github.com/devunwired/recyclerview-playground
