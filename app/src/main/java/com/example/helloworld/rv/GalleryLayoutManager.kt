@@ -53,7 +53,6 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
     }
 
     override fun onLayoutChildren(recycler: RecyclerView.Recycler, state: RecyclerView.State) {
-        Log.d(TAG, "onLayoutChildren: state:${state}")
         detachAndScrapAttachedViews(recycler)
         if (itemCount == 0) {
             return
@@ -65,7 +64,7 @@ class GalleryLayoutManager : RecyclerView.LayoutManager() {
         mItemWidth = getDecoratedMeasuredWidth(itemView)
         mItemHeight = getDecoratedMeasuredHeight(itemView)
         mIntervalWidth = getIntervalWidth()
-
+        Log.d(TAG, "onLayoutChildren: width:${mItemWidth}, height:${mItemHeight}")
         mStartX = width / 2 - mIntervalWidth
 
         //初始化时，前面的visible pos 和 item pos 一致
