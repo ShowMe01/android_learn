@@ -23,6 +23,8 @@ import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
+import com.example.helloworld.rv.CoverFlowActivity
+import com.example.helloworld.rv.RvActivity
 import com.example.helloworld.share.ShareActivity
 import com.example.helloworld.web.WebActivity
 
@@ -53,6 +55,14 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.btnLayoutInflater.setOnClickListener {
             startActivity(Intent(this, LayoutInflaterActivity::class.java))
+        }
+
+        findViewById<View>(R.id.btnRv).setOnClickListener {
+            startActivity(Intent(this, RvActivity::class.java))
+        }
+
+        viewBinding.btnGallery.setOnClickListener {
+            startActivity(Intent(this, CoverFlowActivity::class.java))
         }
     }
 
