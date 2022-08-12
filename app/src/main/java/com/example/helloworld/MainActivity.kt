@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         testLua()
         testGifWidget()
         testConstraintLayout()
-//        testNotification()
+        testNotification()
         findViewById<View>(R.id.btn_web).setOnClickListener {
             startActivity(Intent(this, WebActivity::class.java))
         }
@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun testNotification() {
-        findViewById<View>(R.id.rl_container).postDelayed(Runnable {
+        findViewById<View>(R.id.rl_container).postDelayed({
 
             val nm = NotificationManagerCompat.from(this)
             //注册通知渠道分组，在创建通道之前
@@ -113,12 +113,12 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            nm.createNotificationChannelGroup(
+            /*nm.createNotificationChannelGroup(
                 NotificationChannelGroup(
                     NotificationUtil.OPPO_GROUP_ID,
                     NotificationUtil.OPPO_GROUP_NAME
                 )
-            )
+            )*/
 
             //注册通知渠道
             NotificationUtil.createNotificationChannel(
@@ -128,13 +128,13 @@ class MainActivity : AppCompatActivity() {
                 NotificationUtil.MSG_CHANNEL_DESCRIPTION,
                 NotificationUtil.MSG_GROUP_ID
             )
-            NotificationUtil.createNotificationChannel(
-                this,
-                NotificationUtil.OPPO_CHANNEL_ID,
-                NotificationUtil.OPPO_CHANNEL_NAME,
-                NotificationUtil.OPPO_CHANNEL_DESCRIPTION,
-                NotificationUtil.OPPO_GROUP_ID
-            )
+            /* NotificationUtil.createNotificationChannel(
+                 this,
+                 NotificationUtil.OPPO_CHANNEL_ID,
+                 NotificationUtil.OPPO_CHANNEL_NAME,
+                 NotificationUtil.OPPO_CHANNEL_DESCRIPTION,
+                 NotificationUtil.OPPO_GROUP_ID
+             )*/
 
             //发通知
             val msgNotification = NotificationUtil.createNotification(
@@ -145,13 +145,14 @@ class MainActivity : AppCompatActivity() {
             )
             nm.notify(666, msgNotification)
 
-            val oppoNotification = NotificationUtil.createNotification(
+            /*val oppoNotification = NotificationUtil.createNotification(
                 this,
                 NotificationUtil.OPPO_CHANNEL_ID,
                 "OPPO",
                 "oppo测试渠道",
             )
             nm.notify(778, oppoNotification)
+             */
 
         }, 2000L)
     }

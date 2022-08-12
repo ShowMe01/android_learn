@@ -9,6 +9,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.example.helloworld.MainActivity
 import com.example.helloworld.R
 
 object NotificationUtil {
@@ -37,7 +38,7 @@ object NotificationUtil {
         contentText: String,
     ): Notification {
         //点按通知操作，进入NotificationActivity
-        val intent = Intent(context, NotificationActivity::class.java).apply {
+        val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
