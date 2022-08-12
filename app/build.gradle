@@ -78,4 +78,6 @@ dependencies {
     //permissionx
     implementation 'com.guolindev.permissionx:permissionx:1.6.1'
 
+    // QRCode generate
+    implementation 'com.google.zxing:core:3.5.0'
 }

@@ -23,6 +23,7 @@ import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
+import com.example.helloworld.qrcode.QRCodeActivity
 import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
 import com.example.helloworld.share.ShareActivity
@@ -63,6 +64,10 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.btnGallery.setOnClickListener {
             startActivity(Intent(this, CoverFlowActivity::class.java))
+        }
+
+        viewBinding.btnQrCode.setOnClickListener {
+            startActivity(Intent(this, QRCodeActivity::class.java))
         }
     }
 

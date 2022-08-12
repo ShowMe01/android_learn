@@ -78,6 +78,14 @@
         android:layout_height="wrap_content"
         android:text="画廊" />
 
+    <Button
+        android:id="@+id/btnQrCode"
+        app:layout_constraintTop_toBottomOf="@id/btnGallery"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="二维码" />
+
     <RelativeLayout
         android:id="@+id/rl_container"
         android:layout_width="100dp"
