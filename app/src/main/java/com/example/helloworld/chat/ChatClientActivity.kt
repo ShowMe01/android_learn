@@ -24,7 +24,7 @@ class ChatClientActivity : AppCompatActivity() {
     private var clientSocket: Socket? = null
 
     companion object {
-        const val port = 9898
+        const val port = 9999
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
