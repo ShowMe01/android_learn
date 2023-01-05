@@ -89,6 +89,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btnGallery" />
 
+    <Button
+        android:id="@+id/btnChatServer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="聊天服务器"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnChat" />
+
     <RelativeLayout
         android:id="@+id/rl_container"
         android:layout_width="100dp"

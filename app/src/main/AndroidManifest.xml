@@ -16,7 +16,10 @@
         android:theme="@style/Theme.HelloWorld"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".chat.ChatActivity"
+            android:name=".chat.ChatServerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".chat.ChatClientActivity"
             android:exported="false" />
         <activity
             android:name=".layoutinflater.LayoutInflaterActivity"

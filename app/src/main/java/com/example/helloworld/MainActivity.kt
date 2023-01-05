@@ -11,12 +11,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.BinderThread
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
-import com.example.helloworld.chat.ChatActivity
+import com.example.helloworld.chat.ChatClientActivity
+import com.example.helloworld.chat.ChatServerActivity
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.gif.GifWidgetActivity
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         testConstraintLayout()
         testNotification()
         viewBinding.btnChat.setOnClickListener {
-            startActivity(Intent(this, ChatActivity::class.java))
+            startActivity(Intent(this, ChatClientActivity::class.java))
         }
         findViewById<View>(R.id.btn_web).setOnClickListener {
             startActivity(Intent(this, WebActivity::class.java))
@@ -63,6 +63,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.btnRv).setOnClickListener {
             startActivity(Intent(this, RvActivity::class.java))
+        }
+
+        viewBinding.btnChatServer.setOnClickListener {
+            startActivity(Intent(this, ChatServerActivity::class.java))
         }
 
         viewBinding.btnGallery.setOnClickListener {
