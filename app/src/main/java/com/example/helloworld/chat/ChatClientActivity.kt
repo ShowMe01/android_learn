@@ -43,7 +43,7 @@ class ChatClientActivity : AppCompatActivity() {
             // 连接端口
             semaphore.acquire()
             Log.d(TAG, "initClient: before client socket")
-            val socket = Socket("localhost", port)
+            val socket = Socket("172.16.232.254", port)
             Log.d(TAG, "initClient: after client socket")
             clientSocket = socket
             val inputStream = socket.getInputStream()
