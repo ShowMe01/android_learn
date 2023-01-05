@@ -1,21 +1,19 @@
 package com.example.helloworld.chat
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import com.example.helloworld.R
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.helloworld.databinding.ActivityChatBinding
 import com.example.helloworld.util.MainThreadExecutor
-import dalvik.system.InMemoryDexClassLoader
-import java.io.*
-import java.net.InetAddress
-import java.net.ServerSocket
+import java.io.BufferedReader
+import java.io.BufferedWriter
+import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import java.net.Socket
 import java.nio.charset.StandardCharsets
-import java.util.concurrent.Semaphore
 import kotlin.concurrent.thread
-import kotlin.math.log
 
 class ChatClientActivity : AppCompatActivity() {
 
@@ -24,7 +22,6 @@ class ChatClientActivity : AppCompatActivity() {
     private val msgBuilder = StringBuilder("")
 
     private var clientSocket: Socket? = null
-    private val semaphore = Semaphore(0)
 
     companion object {
         const val port = 9898
@@ -41,9 +38,9 @@ class ChatClientActivity : AppCompatActivity() {
     private fun initClient() {
         thread {
             // 连接端口
-            semaphore.acquire()
             Log.d(TAG, "initClient: before client socket")
             val socket = Socket("172.16.232.254", port)
+            Toast.makeText(this, "连接服务器成功", Toast.LENGTH_LONG).show()
             Log.d(TAG, "initClient: after client socket")
             clientSocket = socket
             val inputStream = socket.getInputStream()
