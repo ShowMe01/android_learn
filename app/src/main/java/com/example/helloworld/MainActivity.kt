@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import com.example.helloworld.chat.ChatActivity
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.gif.GifWidgetActivity
@@ -42,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         testGifWidget()
         testConstraintLayout()
         testNotification()
+        viewBinding.btnChat.setOnClickListener {
+            startActivity(Intent(this, ChatActivity::class.java))
+        }
         findViewById<View>(R.id.btn_web).setOnClickListener {
             startActivity(Intent(this, WebActivity::class.java))
         }

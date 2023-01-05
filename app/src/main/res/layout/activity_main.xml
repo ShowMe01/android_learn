@@ -27,17 +27,18 @@
         android:id="@+id/btn_constraints"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="test_constraintLayout"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_lua"
-        android:text="test_constraintLayout"/>
+        app:layout_constraintTop_toBottomOf="@id/btn_lua" />
+
     <Button
         android:id="@+id/btn_web"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="btn_web"
-        app:layout_constraintTop_toBottomOf="@id/btn_constraints"
-        app:layout_constraintLeft_toLeftOf="parent" />
-        app:layout_constraintTop_toBottomOf="@id/btn_lua" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_constraints" />
+    app:layout_constraintTop_toBottomOf="@id/btn_lua" />
 
     <Button
         android:id="@+id/btnIme"
@@ -46,21 +47,23 @@
         android:text="btn_ime"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_web" />
+
     <Button
         android:id="@+id/btnShare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
         android:text="btnShare"
-        app:layout_constraintTop_toBottomOf="@id/btnIme"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnIme" />
+
     <Button
         android:id="@+id/btnLayoutInflater"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="btnLayoutInflater"
-        app:layout_constraintTop_toBottomOf="@id/btnShare"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnShare" />
 
     <Button
         android:id="@+id/btnRv"
@@ -72,11 +75,19 @@
 
     <Button
         android:id="@+id/btnGallery"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnRv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="画廊" />
+        android:text="画廊"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnRv" />
+
+    <Button
+        android:id="@+id/btnChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="聊天"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGallery" />
 
     <RelativeLayout
         android:id="@+id/rl_container"
