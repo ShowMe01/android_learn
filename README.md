@@ -9,3 +9,5 @@ Send a local file to another app , follow steps:
 Or maybe you just wanna send a string text, in that case you can put string into Intent.EXTRA_TEXT.
 3.Set a right Mime type to Intent.type
 4.Indicate destination with app package name and its Activity class name
+
+test push
