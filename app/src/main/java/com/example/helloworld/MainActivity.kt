@@ -26,6 +26,7 @@ import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
+import com.example.helloworld.screenshot.GetTopActivity
 import com.example.helloworld.share.ShareActivity
 import com.example.helloworld.web.WebActivity
 
@@ -43,6 +44,10 @@ class MainActivity : AppCompatActivity() {
         testGifWidget()
         testConstraintLayout()
         testNotification()
+        viewBinding.btnTopApp.setOnClickListener {
+            startActivity(Intent(this, GetTopActivity::class.java))
+        }
+
         viewBinding.btnChat.setOnClickListener {
             startActivity(Intent(this, ChatClientActivity::class.java))
         }

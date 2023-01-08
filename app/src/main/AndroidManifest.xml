@@ -16,6 +16,9 @@
         android:theme="@style/Theme.HelloWorld"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".screenshot.GetTopActivity"
+            android:exported="false" />
+        <activity
             android:name=".chat.ChatServerActivity"
             android:exported="false" />
         <activity

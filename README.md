@@ -25,3 +25,8 @@ root 在不为空时，resource布局中的layout_xxx等attributes才会生效�
 资料：
 1.https://wiresareobsolete.com/2014/09/building-a-recyclerview-layoutmanager-part-1/
 2.https://github.com/devunwired/recyclerview-playground
+
+
+#top_app
+1.获取当前系统顶部应用包名、应用名
+2.悬浮窗点击截图
