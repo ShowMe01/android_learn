@@ -29,11 +29,11 @@ class ChatServerActivity : AppCompatActivity() {
      */
     private fun initServer() {
         thread {
-            val localHost = InetAddress.getLocalHost()
-            Log.d(TAG, "localHost:$localHost")
             // 监听端口
             Log.d(TAG, "initServer: before server socket ")
             val serverSocket = ServerSocket(ChatClientActivity.port)
+            val inetAddress = serverSocket.inetAddress
+            Log.d(TAG, "inetAddress:$inetAddress + port: ${serverSocket.inetAddress}")
             Log.d(TAG, "initServer: after server socket")
             val clients = mutableListOf<Socket>()
             while (true) {
@@ -43,7 +43,6 @@ class ChatServerActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
     /**
