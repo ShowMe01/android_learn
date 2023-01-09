@@ -22,22 +22,18 @@ class GetTopActivity : AppCompatActivity() {
         thread {
             val mActivityManager = getSystemService(ACTIVITY_SERVICE) as ActivityManager
             while (true) {
-                Thread.sleep(500)
+                Thread.sleep(1000)
                 try {
-                    if (isResume) {
-                        val rtis: List<RunningTaskInfo> = mActivityManager.getRunningTasks(1)
-                        val packageName = rtis[0].topActivity?.packageName
-                        val topActivityName = rtis[0].topActivity?.className
-                        val applicationName =
-                            AppInfoUtil.getApplicationName(this, packageName.safe())
+                    val rtis: List<RunningTaskInfo> = mActivityManager.getRunningTasks(1)
+                    val packageName = rtis[0].topActivity?.packageName
+                    val topActivityName = rtis[0].topActivity?.className
+                    val applicationName =
+                        AppInfoUtil.getApplicationName(this, packageName.safe())
 
-                        Log.d(
-                            TAG,
-                            "package : $packageName, topActivityName:$topActivityName , applicationName: $applicationName"
-                        )
-                    } else {
-                        break
-                    }
+                    Log.d(
+                        TAG,
+                        "package : $packageName, topActivityName:$topActivityName , applicationName: $applicationName"
+                    )
                 } catch (e: Exception) {
                     e.printStackTrace()
                     break
