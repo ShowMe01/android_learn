@@ -127,6 +127,19 @@
                 android:resource="@xml/config_widget_info" />
         </receiver>
         <receiver
+            android:name=".widget.FourTwoWidget"
+            android:exported="true"
+            android:label="4x2小组件">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/four_two_widget_info" />
+        </receiver>
+
+        <receiver
             android:name=".widget.GifWidget"
             android:exported="true">
             <intent-filter>
