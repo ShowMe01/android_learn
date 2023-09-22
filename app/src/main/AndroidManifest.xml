@@ -73,6 +73,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".widget.Widget4_2ConfigActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".constraint.ConstraintActivity"
             android:exported="false" />
         <activity
@@ -117,6 +124,7 @@
         </receiver>
         <receiver
             android:name=".widget.ConfigWidget"
+            android:label="配置小组件"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

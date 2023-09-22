@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:configure="com.example.helloworld.widget.Widget4_2ConfigActivity"
     android:description="@string/app_four_two_widget_description"
     android:initialKeyguardLayout="@layout/four_two_widget"
     android:initialLayout="@layout/four_two_widget"
