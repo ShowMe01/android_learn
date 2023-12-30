@@ -49,6 +49,11 @@
             android:taskAffinity="com.example.task2" />
 
         <activity
+            android:name=".launchmode.ExcludeActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.task2" />
+
+        <activity
             android:name=".screenshot.GetTopActivity"
             android:exported="false" />
         <activity

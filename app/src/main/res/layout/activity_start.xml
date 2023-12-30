@@ -37,4 +37,11 @@
         android:text="test allow task reparent with task2"
         android:layout_below="@id/testSingleInstance" />
 
+    <Button
+        android:id="@+id/testExcludeFromRecents"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/testAllowTaskReparent"
+        android:layout_height="wrap_content"
+        android:text="test FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS "
+        />
 </RelativeLayout>

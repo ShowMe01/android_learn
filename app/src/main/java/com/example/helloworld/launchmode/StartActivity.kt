@@ -31,6 +31,11 @@ class StartActivity : AppCompatActivity() {
         findViewById<View>(R.id.testAllowTaskReparent).setOnClickListener {
             startActivity(Intent(this, AllowTaskReparentingActivity::class.java))
         }
+        findViewById<View>(R.id.testExcludeFromRecents).setOnClickListener {
+            startActivity(Intent(this, ExcludeActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+            })
+        }
 
     }
 }
