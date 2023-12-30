@@ -28,6 +28,21 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
+        <activity android:name=".launchmode.StartActivity" />
+
+        <activity
+            android:name=".launchmode.StandardActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".launchmode.SingleTopActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".launchmode.SingleTaskActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".launchmode.SingleInstanceActivity"
+            android:launchMode="singleInstance" />
+
         <activity
             android:name=".screenshot.GetTopActivity"
             android:exported="false" />

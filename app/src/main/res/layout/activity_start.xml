@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/testStandard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start standard activity" />
+
+    <Button
+        android:id="@+id/testSingleTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testStandard"
+        android:text="start singleTop activity" />
+
+    <Button
+        android:id="@+id/testSingleTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testSingleTop"
+        android:text="test single task" />
+
+    <Button
+        android:id="@+id/testSingleInstance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/testSingleTask"
+        android:text="test singleInstance"
+        />
+
+</RelativeLayout>

@@ -21,6 +21,7 @@ import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
+import com.example.helloworld.launchmode.StartActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
@@ -76,6 +77,9 @@ class MainActivity : AppCompatActivity() {
 
         viewBinding.btnGallery.setOnClickListener {
             startActivity(Intent(this, CoverFlowActivity::class.java))
+        }
+        viewBinding.btnLaunchMode.setOnClickListener {
+            startActivity(Intent(this, StartActivity::class.java))
         }
     }
 
@@ -180,12 +184,15 @@ class MainActivity : AppCompatActivity() {
             R.id.add_item -> {
                 Toast.makeText(baseContext, "addItem", Toast.LENGTH_LONG).show()
             }
+
             R.id.remove_item -> {
                 Toast.makeText(baseContext, "remove_item", Toast.LENGTH_LONG).show()
             }
+
             R.id.more_1 -> {
                 Toast.makeText(baseContext, "more_1", Toast.LENGTH_LONG).show()
             }
+
             R.id.more_2 -> {
                 Toast.makeText(baseContext, "more_2", Toast.LENGTH_LONG).show()
             }
