@@ -28,5 +28,9 @@ class StartActivity : AppCompatActivity() {
         findViewById<View>(R.id.testSingleInstance).setOnClickListener {
             startActivity(Intent(this, SingleInstanceActivity::class.java))
         }
+        findViewById<View>(R.id.testAllowTaskReparent).setOnClickListener {
+            startActivity(Intent(this, AllowTaskReparentingActivity::class.java))
+        }
+
     }
 }

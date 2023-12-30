@@ -21,14 +21,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/testSingleTop"
-        android:text="test single task" />
+        android:text="test single task with task2" />
 
     <Button
         android:id="@+id/testSingleInstance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/testSingleTask"
-        android:text="test singleInstance"
-        />
+        android:text="test singleInstance" />
+
+    <Button
+        android:id="@+id/testAllowTaskReparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test allow task reparent with task2"
+        android:layout_below="@id/testSingleInstance" />
 
 </RelativeLayout>

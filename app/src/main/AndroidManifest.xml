@@ -38,10 +38,15 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".launchmode.SingleTaskActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.task2" />
         <activity
             android:name=".launchmode.SingleInstanceActivity"
             android:launchMode="singleInstance" />
+        <activity
+            android:name=".launchmode.AllowTaskReparentingActivity"
+            android:allowTaskReparenting="true"
+            android:taskAffinity="com.example.task2" />
 
         <activity
             android:name=".screenshot.GetTopActivity"
