@@ -4,46 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".share.ShareActivity">
+    tools:context=".share.TestShareActivity">
+
     <Button
         android:id="@+id/sendText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:text="send text"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/sendBitmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sendText"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:text="send bitmap"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sendText" />
 
     <Button
         android:id="@+id/sendVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sendBitmap"
+        android:text="send video"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="send video" />
+        app:layout_constraintTop_toBottomOf="@id/sendBitmap" />
 
     <Button
         android:id="@+id/sendVideoWithSystem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sendVideo"
+        android:text="send video with system"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="send video with system" />
+        app:layout_constraintTop_toBottomOf="@id/sendVideo" />
 
     <Button
         android:id="@+id/sendVideoKuaishou"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sendVideoWithSystem"
+        android:text="send video kuaishou"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:text="send video kuaishou" />
+        app:layout_constraintTop_toBottomOf="@id/sendVideoWithSystem" />
+
+    <Button
+        android:id="@+id/sendTextToReceiveActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send text to ReceiveActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sendVideoKuaishou" />
+
+    <Button
+        android:id="@+id/sendImgToReceiveActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send image to ReceiveActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sendTextToReceiveActivity" />
+
+    <Button
+        android:id="@+id/sendVideoToReceiveActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send video to ReceiveActivity"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sendImgToReceiveActivity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,7 +28,7 @@ import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
 import com.example.helloworld.screenshot.GetTopActivity
-import com.example.helloworld.share.ShareActivity
+import com.example.helloworld.share.TestShareActivity
 import com.example.helloworld.web.WebActivity
 
 class MainActivity : AppCompatActivity() {
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.btnShare).setOnClickListener {
-            startActivity(Intent(this, ShareActivity::class.java))
+            startActivity(Intent(this, TestShareActivity::class.java))
         }
 
         viewBinding.btnLayoutInflater.setOnClickListener {
