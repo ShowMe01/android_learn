@@ -16,9 +16,16 @@
         android:theme="@style/Theme.HelloWorld"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ipc.ReceiveBundleActivity"
-            android:process=":remote"
+            android:name=".ipc.ServiceMessengerActivity"
+            android:exported="false"
+            android:process=":remote" />
+        <activity
+            android:name=".ipc.ClientMessengerActivity"
             android:exported="false" />
+        <activity
+            android:name=".ipc.ReceiveBundleActivity"
+            android:exported="false"
+            android:process=":remote" />
         <activity
             android:name=".ipc.TestIPCActivity"
             android:exported="false" />
