@@ -67,6 +67,8 @@
             android:exported="false" />
         <activity
             android:name=".chat.ChatServerActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity="com.example.chatServer"
             android:exported="false" />
         <activity
             android:name=".chat.ChatClientActivity"
