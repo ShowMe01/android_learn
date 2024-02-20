@@ -16,10 +16,25 @@
         android:theme="@style/Theme.HelloWorld"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ipc.ServiceMessengerActivity"
+            android:exported="false"
+            android:process=":remote" />
+        <activity
+            android:name=".ipc.ClientMessengerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ipc.ReceiveBundleActivity"
+            android:exported="false"
+            android:process=":remote" />
+        <activity
+            android:name=".ipc.TestIPCActivity"
+            android:exported="false" />
+        <activity
             android:name=".share.ReceiveActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
+
                 <category android:name="android.intent.category.DEFAULT" />
 
                 <data android:mimeType="image/*" />

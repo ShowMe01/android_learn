@@ -21,6 +21,7 @@ import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
+import com.example.helloworld.ipc.TestIPCActivity
 import com.example.helloworld.launchmode.StartActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
@@ -80,6 +81,9 @@ class MainActivity : AppCompatActivity() {
         }
         viewBinding.btnLaunchMode.setOnClickListener {
             startActivity(Intent(this, StartActivity::class.java))
+        }
+        viewBinding.btnIPC.setOnClickListener {
+            startActivity(Intent(this, TestIPCActivity::class.java))
         }
     }
 
