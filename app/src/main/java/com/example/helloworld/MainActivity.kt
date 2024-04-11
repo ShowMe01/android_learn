@@ -9,12 +9,16 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowInsetsController
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.helloworld.chat.ChatClientActivity
 import com.example.helloworld.chat.ChatServerActivity
 import com.example.helloworld.constraint.ConstraintActivity
@@ -31,6 +35,7 @@ import com.example.helloworld.rv.RvActivity
 import com.example.helloworld.screenshot.GetTopActivity
 import com.example.helloworld.share.TestShareActivity
 import com.example.helloworld.web.WebActivity
+import com.example.helloworld.windowinsets.WindowInsetsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,13 +44,24 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        val windowInsetsController =
+            WindowCompat.getInsetsController(window, window.decorView)
+//         Configure the behavior of the hidden system bars.
+        windowInsetsController?.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        windowInsetsController?.hide(WindowInsetsCompat.Type.statusBars());
+
 
         testLua()
         testGifWidget()
         testConstraintLayout()
         testNotification()
+        viewBinding.windowInsets.setOnClickListener {
+            startActivity(Intent(this, WindowInsetsActivity::class.java))
+        }
         viewBinding.btnTopApp.setOnClickListener {
             startActivity(Intent(this, GetTopActivity::class.java))
         }

@@ -45,6 +45,7 @@
 
         <service
             android:name=".screenshot.MyAccessibilityService"
+            android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -82,9 +83,9 @@
             android:exported="false" />
         <activity
             android:name=".chat.ChatServerActivity"
+            android:exported="false"
             android:launchMode="singleTask"
-            android:taskAffinity="com.example.chatServer"
-            android:exported="false" />
+            android:taskAffinity="com.example.chatServer" />
         <activity
             android:name=".chat.ChatClientActivity"
             android:exported="false" />
@@ -95,6 +96,10 @@
             android:name=".rv.RvActivity"
             android:exported="false"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".windowinsets.WindowInsetsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

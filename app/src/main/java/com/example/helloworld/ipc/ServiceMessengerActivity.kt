@@ -11,6 +11,6 @@ class ServiceMessengerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_send)
 
-        intent.getParcelableExtra<Messenger>()
+//        intent.getParcelableExtra<Messenger>()
     }
 }

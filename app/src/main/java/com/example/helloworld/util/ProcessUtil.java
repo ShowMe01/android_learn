@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class ProcessUtils {
+class ProcessUtils {
     private static volatile String packageName = null;
     private static volatile String  processName = null;
 
