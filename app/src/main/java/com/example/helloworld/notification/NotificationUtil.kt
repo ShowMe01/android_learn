@@ -41,7 +41,8 @@ object NotificationUtil {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+        val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent,
+            PendingIntent.FLAG_IMMUTABLE)
         return NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.ic_baseline_event_note_24)
             .setContentTitle(contentTitle)

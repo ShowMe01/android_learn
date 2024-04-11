@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -39,11 +40,17 @@ class WindowInsetsActivity : AppCompatActivity() {
             } else {
                 windowInsetsController?.hide(WindowInsetsCompat.Type.statusBars());
             }
+            refreshState()
+
         }
+
+        refreshState()
 
         findViewById<View>(R.id.fitsSystem).setOnClickListener {
             fitsSystem = !fitsSystem
             WindowCompat.setDecorFitsSystemWindows(window, fitsSystem)
+            refreshState()
+
         }
 
         findViewById<View>(R.id.cutouts).setOnClickListener {
@@ -53,12 +60,27 @@ class WindowInsetsActivity : AppCompatActivity() {
                 params.layoutInDisplayCutoutMode =
                     if (cutouts) WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES else WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
                 window.attributes = params
+                refreshState()
+
             }
         }
 
         findViewById<View>(R.id.statusColor).setOnClickListener {
             window.statusBarColor = colors[colorIndex]
             colorIndex = (colorIndex+1) % colors.size
+            refreshState()
+            
         }
+    }
+
+    fun refreshState() {
+        findViewById<TextView>(R.id.showBarsState).text = if (showBars) "show" else "hide";
+        findViewById<TextView>(R.id.fitsSystemState).text = fitsSystem.toString()
+        findViewById<TextView>(R.id.cutoutsState).text = cutouts.toString()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            findViewById<TextView>(R.id.statusColorState).text = Color.valueOf(colors[colorIndex]).toString()
+        }
+
+
     }
 }
