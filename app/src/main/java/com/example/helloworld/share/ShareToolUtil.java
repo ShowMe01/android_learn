@@ -42,7 +42,7 @@ public class ShareToolUtil {
             try {
                 FileOutputStream out = new FileOutputStream(filePic);
                 if (bitmap == null) {
-                    bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.number_1);
+//                    bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.number_1);
                 }
                 bitmap.compress(Bitmap.CompressFormat.PNG, 90, out);
                 try {
