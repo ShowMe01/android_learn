@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <Button
+        android:id="@+id/showBars"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tooglebars"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/showBarsState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/showBars"
+        app:layout_constraintLeft_toRightOf="@id/showBars"
+        app:layout_constraintTop_toTopOf="@id/showBars"
+        tools:text="show" />
+
+    <Button
+        android:id="@+id/fitsSystem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="fitsSystem"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/showBars" />
+
+    <TextView
+        android:id="@+id/fitsSystemState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/fitsSystem"
+        app:layout_constraintLeft_toRightOf="@id/fitsSystem"
+        app:layout_constraintTop_toTopOf="@id/fitsSystem"
+        tools:text="true" />
+
+    <Button
+        android:id="@+id/cutouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cutouts"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fitsSystem" />
+
+
+    <TextView
+        android:id="@+id/cutoutsState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/cutouts"
+        app:layout_constraintLeft_toRightOf="@id/cutouts"
+        app:layout_constraintTop_toTopOf="@id/cutouts"
+        tools:text="true" />
+
+    <Button
+        android:id="@+id/statusColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="statusColor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cutouts" />
+
+    <TextView
+        android:id="@+id/statusColorState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/statusColor"
+        app:layout_constraintLeft_toRightOf="@id/statusColor"
+        app:layout_constraintTop_toTopOf="@id/statusColor"
+        tools:text="tranparent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

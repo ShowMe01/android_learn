@@ -18,7 +18,7 @@ import com.permissionx.guolindev.PermissionX
 import java.io.*
 
 
-class ShareActivity : AppCompatActivity() {
+class TestShareActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "ShareActivity"
@@ -100,6 +100,36 @@ class ShareActivity : AppCompatActivity() {
 //                startActivity(Intent.createChooser(shareIntent, "分享到新浪"))
                 startActivity(shareIntent)
             }
+        }
+
+        binding.sendTextToReceiveActivity.setOnClickListener {
+            startActivity(Intent().apply {
+                action = Intent.ACTION_SEND
+//                action = ReceiveActivity.MY_ACTION_SEND
+                addCategory(Intent.CATEGORY_DEFAULT)
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, "通过Intent.EXTRA_TEXT发送文本")
+            })
+        }
+
+        binding.sendImgToReceiveActivity.setOnClickListener {
+            startActivity(Intent().apply {
+                action = Intent.ACTION_SEND
+//                action = ReceiveActivity.MY_ACTION_SEND
+                addCategory(Intent.CATEGORY_DEFAULT)
+                type = "image/*"
+                putExtra(Intent.EXTRA_STREAM, Uri.parse("https://alifei04.cfp.cn/creative/vcg/800/new/VCG211be3c9c31.jpg"))
+            })
+        }
+
+        binding.sendVideoToReceiveActivity.setOnClickListener {
+            startActivity(Intent().apply {
+                action = Intent.ACTION_SEND
+//                action = ReceiveActivity.MY_ACTION_SEND
+                addCategory(Intent.CATEGORY_DEFAULT)
+                type = "video/*"
+                putExtra(Intent.EXTRA_STREAM, Uri.parse("https://www.w3schools.com/html/movie.mp4"))
+            })
         }
     }
 

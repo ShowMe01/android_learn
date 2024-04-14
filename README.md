@@ -27,3 +27,8 @@ root 在不为空时，resource布局中的layout_xxx等attributes才会生效�
 2.https://github.com/devunwired/recyclerview-playground
 
 测试push
+
+
+#top_app
+1.获取当前系统顶部应用包名、应用名
+2.悬浮窗点击截图

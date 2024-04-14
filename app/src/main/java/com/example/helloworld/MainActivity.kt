@@ -9,24 +9,33 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowInsetsController
 import android.widget.Button
 import android.widget.Toast
-import androidx.annotation.BinderThread
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
+import com.example.helloworld.chat.ChatClientActivity
+import com.example.helloworld.chat.ChatServerActivity
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
+import com.example.helloworld.ipc.TestIPCActivity
+import com.example.helloworld.launchmode.StartActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
-import com.example.helloworld.share.ShareActivity
+import com.example.helloworld.screenshot.GetTopActivity
+import com.example.helloworld.share.TestShareActivity
 import com.example.helloworld.web.WebActivity
+import com.example.helloworld.windowinsets.WindowInsetsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -35,13 +44,31 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
+        val windowInsetsController =
+            WindowCompat.getInsetsController(window, window.decorView)
+//         Configure the behavior of the hidden system bars.
+        windowInsetsController?.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        windowInsetsController?.hide(WindowInsetsCompat.Type.statusBars());
+
 
         testLua()
         testGifWidget()
         testConstraintLayout()
         testNotification()
+        viewBinding.windowInsets.setOnClickListener {
+            startActivity(Intent(this, WindowInsetsActivity::class.java))
+        }
+        viewBinding.btnTopApp.setOnClickListener {
+            startActivity(Intent(this, GetTopActivity::class.java))
+        }
+
+        viewBinding.btnChat.setOnClickListener {
+            startActivity(Intent(this, ChatClientActivity::class.java))
+        }
         findViewById<View>(R.id.btn_web).setOnClickListener {
             startActivity(Intent(this, WebActivity::class.java))
         }
@@ -50,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.btnShare).setOnClickListener {
-            startActivity(Intent(this, ShareActivity::class.java))
+            startActivity(Intent(this, TestShareActivity::class.java))
         }
 
         viewBinding.btnLayoutInflater.setOnClickListener {
@@ -61,8 +88,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, RvActivity::class.java))
         }
 
+        viewBinding.btnChatServer.setOnClickListener {
+            startActivity(Intent(this, ChatServerActivity::class.java))
+        }
+
         viewBinding.btnGallery.setOnClickListener {
             startActivity(Intent(this, CoverFlowActivity::class.java))
+        }
+        viewBinding.btnLaunchMode.setOnClickListener {
+            startActivity(Intent(this, StartActivity::class.java))
+        }
+        viewBinding.btnIPC.setOnClickListener {
+            startActivity(Intent(this, TestIPCActivity::class.java))
         }
     }
 
@@ -167,12 +204,15 @@ class MainActivity : AppCompatActivity() {
             R.id.add_item -> {
                 Toast.makeText(baseContext, "addItem", Toast.LENGTH_LONG).show()
             }
+
             R.id.remove_item -> {
                 Toast.makeText(baseContext, "remove_item", Toast.LENGTH_LONG).show()
             }
+
             R.id.more_1 -> {
                 Toast.makeText(baseContext, "more_1", Toast.LENGTH_LONG).show()
             }
+
             R.id.more_2 -> {
                 Toast.makeText(baseContext, "more_2", Toast.LENGTH_LONG).show()
             }

@@ -10,7 +10,7 @@ import java.util.*
 
 class GifWidgetActivity : AppCompatActivity() {
     var curIndex = 0
-    var imgList = arrayOf(R.drawable.number_1, R.drawable.number_2, R.drawable.number_3)
+//    var imgList = arrayOf(R.drawable.number_1, R.drawable.number_2, R.drawable.number_3)
     private var timer = Timer()
     var realCount = 0
 
