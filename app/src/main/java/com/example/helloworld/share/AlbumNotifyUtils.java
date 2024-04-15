@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import com.example.helloworld.application.AppContext;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * move from AlbumNotifyHelper
@@ -111,7 +112,11 @@ public class AlbumNotifyUtils {
             return 0;
         } finally {
             if (mmr != null) {
-                mmr.release();
+                try {
+                    mmr.release();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
