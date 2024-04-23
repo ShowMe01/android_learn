@@ -29,6 +29,7 @@ import com.example.helloworld.ipc.TestIPCActivity
 import com.example.helloworld.launchmode.StartActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.lua.LuaActivity
+import com.example.helloworld.media.MediaActivity
 import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
@@ -59,6 +60,11 @@ class MainActivity : AppCompatActivity() {
         testGifWidget()
         testConstraintLayout()
         testNotification()
+
+        viewBinding.btnMedia.setOnClickListener {
+            startActivity(Intent(this, MediaActivity::class.java))
+        }
+
         viewBinding.windowInsets.setOnClickListener {
             startActivity(Intent(this, WindowInsetsActivity::class.java))
         }
