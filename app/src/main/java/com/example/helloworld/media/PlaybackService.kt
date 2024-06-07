@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.OptIn
 import androidx.media3.common.AudioAttributes
+import androidx.media3.common.C
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
@@ -31,8 +32,9 @@ class PlaybackService : MediaSessionService() {
         setMediaNotificationProvider(DefaultMediaNotificationProvider(this))
         super.onCreate()
         val player = ExoPlayer.Builder(this)
-//            .setAudioAttributes(AudioAttributes.DEFAULT, false)
-//            .setHandleAudioBecomingNoisy(false)
+            .setAudioAttributes(AudioAttributes.DEFAULT, false)
+            .setHandleAudioBecomingNoisy(true)
+            .setWakeMode(C.WAKE_MODE_LOCAL)
             .build()
         player.addListener(object : Player.Listener {
             override fun onEvents(player: Player, events: Player.Events) {

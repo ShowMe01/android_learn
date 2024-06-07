@@ -45,6 +45,7 @@ class MediaActivity : BaseActivity() {
                     // MediaController implements the Player interface, so it can be
                     // attached to the PlayerView UI component.
                     val mediaController = controllerFuture.get()
+//                    mediaController.sendCustomCommand()
                 },
                 MoreExecutors.directExecutor()
             )
