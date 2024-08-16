@@ -35,7 +35,9 @@ android {
     }
     buildFeatures {
         viewBinding true
+        aidl true
     }
+    namespace 'com.example.helloworld'
 }
 
 dependencies {
@@ -54,14 +56,14 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // 核心库
-    implementation "com.immomo.mlncore:core:1.0.1"
+//    implementation "com.immomo.mlncore:core:1.0.1"
     // view、工具桥接库
-    implementation "com.immomo.mls:mln:1.0.1"
+//    implementation "com.immomo.mls:mln:1.0.1"
     // 代码生成库
-    annotationProcessor "com.immomo.mls:processor:1.0.0"
+//    annotationProcessor "com.immomo.mls:processor:1.0.0"
     // 热重载，配合IDEA插件使用
-    debugImplementation "com.immomo.luanative:hotreload:1.0.1"
-    releaseImplementation "com.immomo.luanative:hotreload_empty:1.0.1"
+//    debugImplementation "com.immomo.luanative:hotreload:1.0.1"
+//    releaseImplementation "com.immomo.luanative:hotreload_empty:1.0.1"
     // 配合热重载使用
     debugImplementation "com.google.protobuf:protobuf-lite:3.0.1"
 

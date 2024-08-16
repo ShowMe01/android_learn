@@ -28,7 +28,6 @@ import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.ipc.TestIPCActivity
 import com.example.helloworld.launchmode.StartActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
-import com.example.helloworld.lua.LuaActivity
 import com.example.helloworld.media.MediaActivity
 import com.example.helloworld.notification.NotificationUtil
 import com.example.helloworld.rv.CoverFlowActivity
@@ -138,9 +137,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        findViewById<View>(R.id.btn_lua).setOnClickListener {
-            startActivity(Intent(this, LuaActivity::class.java))
-        }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
