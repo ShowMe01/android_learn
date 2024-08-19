@@ -2,10 +2,10 @@ name: Android CD
 
 # 触发器
 on:
-  push:
-    branches: [ "master","dev/build_github" ]
-  pull_request:
-    branches: [ "master","dev/build_github" ]
+#  push:
+#    branches: [ "master","dev/build_github" ]
+#  pull_request:
+#    branches: [ "master","dev/build_github" ]
 
 jobs:
   build:
