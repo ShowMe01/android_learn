@@ -31,4 +31,5 @@ jobs:
         run: ./gradlew clean
 
       - name: Build project
-        run: ./gradlew assembleDebug --no-lint --stacktrace --debug
+        run: ./gradlew assembleDebug
+#        run: ./gradlew assembleDebug --no-lint --stacktrace --debug
