@@ -65,6 +65,168 @@ android {
     namespace 'com.example.helloworld'
 }
 
+ext {
+    arch_version = "2.1.0"
+    lifecycle_version = "2.8.0"
+    smack_version = "4.4.6"
+    dagger_version = "2.46.1"
+    versions_roomigrant = "0.3.1"
+    room_version = "2.5.2"
+
+    testing = [
+            testing                  : "androidx.arch.core:core-testing:$arch_version",
+            orchestrator             : "androidx.test:orchestrator:1.4.0",
+            rules                    : "androidx.test:rules:1.4.0",
+            junit                    : "junit:junit:4.13.2",
+            mockito                  : "org.mockito:mockito-core:3.12.1",
+            mockito_android          : "org.mockito:mockito-android:3.12.1",
+            mockito_inline           : "org.mockito:mockito-inline:3.12.1",
+            mockito_kotlin           : "org.mockito.kotlin:mockito-kotlin:3.2.0",
+            hamcrest                 : "org.hamcrest:hamcrest-library:2.2",
+            espresso_core            : 'androidx.test.espresso:espresso-core:3.4.0',
+            espresso_resource        : 'androidx.test.espresso:espresso-idling-resource:3.4.0',
+            espresso_web             : 'androidx.test.espresso:espresso-web:3.4.0',
+            robolectric_shadows_multi: "org.robolectric:shadows-multidex:4.8.2",
+            robolectric              : "org.robolectric:robolectric:4.8.2",
+            uiautomator              : 'androidx.test.uiautomator:uiautomator:2.2.0',
+            idling_concurrent        : 'androidx.test.espresso.idling:idling-concurrent:3.4.0',
+            androidx                 : 'androidx.test:core:1.4.0',
+            androidx_fragment        : 'androidx.fragment:fragment-testing:1.3.6',
+            test_runner              : "androidx.test:runner:1.4.0",
+    ]
+
+    gms = [
+            analytics: "com.google.android.gms:play-services-analytics:18.0.1",
+            auth     : "com.google.android.gms:play-services-auth:20.1.0",
+            base     : "com.google.android.gms:play-services-base:18.0.1",
+            location : "com.google.android.gms:play-services-location:19.0.1",
+            oss      : "com.google.android.gms:play-services-oss-licenses:16.0.0",
+    ]
+
+    rx = [
+            java2                : "io.reactivex.rxjava2:rxjava:2.2.6",
+            relay                : "com.jakewharton.rxrelay2:rxrelay:2.1.0",
+            rxkotlin             : "io.reactivex.rxjava2:rxkotlin:2.4.0",
+            autodispose          : "com.uber.autodispose:autodispose:1.1.0",
+            autodispose_android  : "com.uber.autodispose:autodispose-android:1.1.0",
+            autodispose_lifecycle: "com.uber.autodispose:autodispose-lifecycle:1.1.0",
+            autodispose_arch     : "com.uber.autodispose:autodispose-android-archcomponents:1.1.0",
+            autodispose_arch_test: "com.uber.autodispose:autodispose-android-archcomponents-test:1.1.0",
+            rxandroid            : "io.reactivex.rxjava2:rxandroid:2.1.1",
+
+    ]
+
+    firebase = [
+            bom        : "com.google.firebase:firebase-bom:30.4.0",
+            analytics  : "com.google.firebase:firebase-analytics",
+            auth       : "com.google.firebase:firebase-auth",
+            database   : "com.google.firebase:firebase-database",
+            config     : "com.google.firebase:firebase-config",
+            messaging  : "com.google.firebase:firebase-messaging",
+            performance: "com.google.firebase:firebase-perf",
+            crashlytics: "com.google.firebase:firebase-crashlytics",
+            firebase   : "com.mparticle:android-googleanalyticsfirebase-kit:5.48.2",
+    ]
+
+    // 用户数据分析
+    leanplum = [
+            leanplumAnnotations: "com.coffeemeetsbagel.leanplumannotations:LeanplumAnnotations:0.1.9",
+            leanplumProcessor  : "com.coffeemeetsbagel.leanplumprocessor:LeanplumProcessor:0.1.9",
+            leanplum           : "com.mparticle:android-leanplum-kit:5.48.2",
+    ]
+
+    smack = [
+            android          : "org.igniterealtime.smack:smack-android:$smack_version",
+            tcp              : "org.igniterealtime.smack:smack-tcp:$smack_version",
+            im               : "org.igniterealtime.smack:smack-im:$smack_version",
+            extensions       : "org.igniterealtime.smack:smack-extensions:$smack_version",
+            extensionsandroid: "org.igniterealtime.smack:smack-android-extensions:$smack_version",
+            experimental     : "org.igniterealtime.smack:smack-experimental:$smack_version",
+    ]
+    dagger = [
+            core     : "com.google.dagger:dagger:$dagger_version",
+            android  : "com.google.dagger:dagger-android:$dagger_version",
+            support  : "com.google.dagger:dagger-android-support:$dagger_version",
+            processor: "com.google.dagger:dagger-android-processor:$dagger_version",
+            compiler : "com.google.dagger:dagger-compiler:$dagger_version",
+    ]
+    facebook = [
+            sdk               : "com.facebook.android:facebook-android-sdk:14.1.1",
+            shimmer           : "com.facebook.shimmer:shimmer:0.5.0@aar",
+            stetho            : "com.facebook.stetho:stetho:1.6.0",
+            stetho_interceptor: "com.facebook.stetho:stetho-okhttp3:1.6.0",
+    ]
+
+    pay=[
+            client               : "com.android.billingclient:billing:4.0.0",
+            stripe               : 'com.stripe:stripe-android:20.8.0',
+    ]
+
+    normal = [
+            design           : "com.google.android.material:material:1.4.0",
+            v4               : "androidx.legacy:legacy-support-v4:1.0.0",
+            v7               : "androidx.appcompat:appcompat:1.3.0",
+            animated_vector  : "androidx.vectordrawable:vectordrawable-animated:1.0.0",
+            card_view        : "androidx.cardview:cardview:1.0.0",
+            recycler_view    : "androidx.recyclerview:recyclerview:1.2.1",
+            core             : "androidx.core:core:1.5.0",
+            constraint_layout: "androidx.constraintlayout:constraintlayout:2.1.0",
+            annotations      : "androidx.annotation:annotation:1.2.0",
+            runtime          : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
+            common           : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            extensions       : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            gson             : "com.google.code.gson:gson:2.8.0",
+            materialrangebar     : "com.appyvet:materialrangebar:1.3",
+            retrofit             : "com.squareup.retrofit2:retrofit:2.9.0",
+            converter_gson       : "com.squareup.retrofit2:converter-gson:2.9.0",
+            rx_adapter           : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
+            logging_interceptor  : "com.squareup.okhttp3:logging-interceptor:4.9.1",
+            mpchart              : "com.github.PhilJay:MPAndroidChart:v2.2.3",
+            lottie               : "com.airbnb.android:lottie:4.2.2",
+            photoview            : "com.github.chrisbanes:PhotoView:1.2.6",
+            leakcanary           : "com.squareup.leakcanary:leakcanary-android:2.7",
+            tooltip              : "com.github.skydoves:balloon:1.4.3",
+
+    ]
+
+
+    dependencies = [
+            // 应用内浏览器
+            browser              : "androidx.browser:browser:1.3.0",
+            // 查看安装来源
+            installreferrer      : "com.android.installreferrer:installreferrer:2.2",
+            // 低端安卓机使用java8特性
+            coreLibraryDesugaring: "com.android.tools:desugar_jdk_libs:1.1.5",
+
+            annotations          : 'com.fasterxml.jackson.core:jackson-annotations:2.9.7',
+
+            // deep link ，安装前点击链接，安装后引导特定页面
+            branch               : "io.branch.sdk.android:library:2.12.1",
+
+            // 图片服务
+            imgix                : "com.imgix:imgix-java:2.3.2",
+            picasso              : "com.squareup.picasso:picasso:2.5.2",
+            glide                : "com.github.bumptech.glide:glide:4.11.0",
+            glideintegration     : "com.github.bumptech.glide:okhttp3-integration:4.11.0",
+            glidekapt            : "com.github.bumptech.glide:compiler:4.11.0",
+
+            cwac_saferoom        : "com.commonsware.cwac:saferoom.x:1.1.2",
+            roomigrant           : "com.github.MatrixDev.Roomigrant:RoomigrantLib:$versions_roomigrant",
+            roomigrant_compiler  : "com.github.MatrixDev.Roomigrant:RoomigrantCompiler:$versions_roomigrant",
+
+            // 安全相关，收集数据，分析用户是否有欺诈行为
+            sift                 : "com.siftscience:sift-android:0.10.5",
+            // 崩溃后台
+            sentry               : "io.sentry:sentry-android:5.7.4",
+
+            runtime              : "androidx.room:room-runtime:$room_version",
+            compiler             : "androidx.room:room-compiler:$room_version",
+            ktx                  : "androidx.room:room-ktx:$room_version",
+            rxjava2              : "androidx.room:room-rxjava2:$room_version",
+            testing              : "androidx.room:room-testing:$room_version",
+    ]
+}
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
