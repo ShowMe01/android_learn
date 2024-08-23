@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id "com.google.gms.google-services"
 }
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -157,35 +158,35 @@ ext {
             stetho_interceptor: "com.facebook.stetho:stetho-okhttp3:1.6.0",
     ]
 
-    pay=[
-            client               : "com.android.billingclient:billing:4.0.0",
-            stripe               : 'com.stripe:stripe-android:20.8.0',
+    pay = [
+            client: "com.android.billingclient:billing:4.0.0",
+            stripe: 'com.stripe:stripe-android:20.8.0',
     ]
 
     normal = [
-            design           : "com.google.android.material:material:1.4.0",
-            v4               : "androidx.legacy:legacy-support-v4:1.0.0",
-            v7               : "androidx.appcompat:appcompat:1.3.0",
-            animated_vector  : "androidx.vectordrawable:vectordrawable-animated:1.0.0",
-            card_view        : "androidx.cardview:cardview:1.0.0",
-            recycler_view    : "androidx.recyclerview:recyclerview:1.2.1",
-            core             : "androidx.core:core:1.5.0",
-            constraint_layout: "androidx.constraintlayout:constraintlayout:2.1.0",
-            annotations      : "androidx.annotation:annotation:1.2.0",
-            runtime          : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
-            common           : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
-            extensions       : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
-            gson             : "com.google.code.gson:gson:2.8.0",
-            materialrangebar     : "com.appyvet:materialrangebar:1.3",
-            retrofit             : "com.squareup.retrofit2:retrofit:2.9.0",
-            converter_gson       : "com.squareup.retrofit2:converter-gson:2.9.0",
-            rx_adapter           : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
-            logging_interceptor  : "com.squareup.okhttp3:logging-interceptor:4.9.1",
-            mpchart              : "com.github.PhilJay:MPAndroidChart:v2.2.3",
-            lottie               : "com.airbnb.android:lottie:4.2.2",
-            photoview            : "com.github.chrisbanes:PhotoView:1.2.6",
-            leakcanary           : "com.squareup.leakcanary:leakcanary-android:2.7",
-            tooltip              : "com.github.skydoves:balloon:1.4.3",
+            design             : "com.google.android.material:material:1.4.0",
+            v4                 : "androidx.legacy:legacy-support-v4:1.0.0",
+            v7                 : "androidx.appcompat:appcompat:1.3.0",
+            animated_vector    : "androidx.vectordrawable:vectordrawable-animated:1.0.0",
+            card_view          : "androidx.cardview:cardview:1.0.0",
+            recycler_view      : "androidx.recyclerview:recyclerview:1.2.1",
+            core               : "androidx.core:core:1.5.0",
+            constraint_layout  : "androidx.constraintlayout:constraintlayout:2.1.0",
+            annotations        : "androidx.annotation:annotation:1.2.0",
+            runtime            : "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
+            common             : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            extensions         : "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            gson               : "com.google.code.gson:gson:2.8.0",
+            materialrangebar   : "com.appyvet:materialrangebar:1.3",
+            retrofit           : "com.squareup.retrofit2:retrofit:2.9.0",
+            converter_gson     : "com.squareup.retrofit2:converter-gson:2.9.0",
+            rx_adapter         : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:4.9.1",
+            mpchart            : "com.github.PhilJay:MPAndroidChart:v2.2.3",
+            lottie             : "com.airbnb.android:lottie:4.2.2",
+            photoview          : "com.github.chrisbanes:PhotoView:1.2.6",
+            leakcanary         : "com.squareup.leakcanary:leakcanary-android:2.7",
+            tooltip            : "com.github.skydoves:balloon:1.4.3",
 
     ]
 
@@ -273,5 +274,20 @@ dependencies {
     implementation "androidx.media3:media3-ui:1.3.1"
     implementation "androidx.media3:media3-common:1.3.1"
     implementation "androidx.media3:media3-session:1.3.1"
+
+
+    // bom        : "com.google.firebase:firebase-bom:30.4.0",
+    //            analytics  : "com.google.firebase:firebase-analytics",
+    //            auth       : "com.google.firebase:firebase-auth",
+    //            database   : "com.google.firebase:firebase-database",
+    //            config     : "com.google.firebase:firebase-config",
+    //            messaging  : "com.google.firebase:firebase-messaging",
+    //            performance: "com.google.firebase:firebase-perf",
+    //            crashlytics: "com.google.firebase:firebase-crashlytics",
+//    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+//    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(firebase.bom))
+    implementation(firebase.analytics)
+
 
 }
