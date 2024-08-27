@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowInsetsController
 import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -24,6 +23,7 @@ import com.example.helloworld.chat.ChatClientActivity
 import com.example.helloworld.chat.ChatServerActivity
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
+import com.example.helloworld.firebase.FireTestActivity
 import com.example.helloworld.gif.GifWidgetActivity
 import com.example.helloworld.ime.ImeActivity
 import com.example.helloworld.ipc.TestIPCActivity
@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
         testConstraintLayout()
         testNotification()
 
+        viewBinding.btnFirebase.setOnClickListener {
+            startActivity(Intent(this, FireTestActivity::class.java))
+        }
         viewBinding.btnMedia.setOnClickListener {
             startActivity(Intent(this, MediaActivity::class.java))
         }

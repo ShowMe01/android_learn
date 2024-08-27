@@ -211,6 +211,8 @@
         <activity
             android:name=".rv.CoverFlowActivity"
             android:screenOrientation="landscape" />
+
+        <activity android:name=".firebase.FireTestActivity" />
     </application>
 
 </manifest>

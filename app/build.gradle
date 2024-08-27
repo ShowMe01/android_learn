@@ -288,6 +288,11 @@ dependencies {
 //    implementation("com.google.firebase:firebase-analytics")
     implementation(platform(firebase.bom))
     implementation(firebase.analytics)
-
+//    implementation(firebase.auth)
+//    implementation(firebase.database)
+//    implementation(firebase.config)
+//    implementation(firebase.messaging)
+//    implementation(firebase.performance)
+//    implementation(firebase.crashlytics)
 
 }

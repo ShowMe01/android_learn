@@ -40,6 +40,16 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
+                    android:id="@+id/btnFirebase"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="btnFirebase"
+                    android:textAllCaps="false"
+                    app:layout_constraintLeft_toRightOf="@id/btn_gif_widget"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <Button
                     android:id="@+id/btn_constraints"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
