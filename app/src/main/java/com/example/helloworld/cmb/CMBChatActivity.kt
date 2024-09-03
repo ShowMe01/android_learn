@@ -107,6 +107,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         return ActivityCmbChatBinding.inflate(layoutInflater)
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         XMPPManager.disconnect()

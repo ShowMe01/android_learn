@@ -17,6 +17,7 @@ class MyApplication : Application() {
         AppContext.init(this)
 
         MMKV.initialize(getAppContext())
+        AppLifecycleListener.register(this)
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
             }
