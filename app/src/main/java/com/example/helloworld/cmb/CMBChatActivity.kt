@@ -3,7 +3,13 @@ package com.example.helloworld.cmb
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.helloworld.R
@@ -26,19 +32,37 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
 
     private val to = "alice@chatdev.moond4rk.com"
 
-    private lateinit var recyclerView: RecyclerView
     private lateinit var messageAdapter: MessageAdapter
 
     override fun init() {
-        recyclerView = findViewById(R.id.rv)
         messageAdapter = MessageAdapter(mutableListOf())
-        recyclerView.adapter = messageAdapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        viewBinding.rv.adapter = messageAdapter
+        viewBinding.rv.layoutManager = LinearLayoutManager(this)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.root) { view, insets ->
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val imeHeight = imeInsets.bottom
+
+            Log.d("imeTest", "imeVisible:${imeVisible} , imeHeight:${imeHeight}")
+            if (imeVisible && imeHeight > 0) {
+                viewBinding.imePlaceHolder.updateLayoutParams<ViewGroup.LayoutParams> {
+                    height = imeHeight
+                }
+                viewBinding.rv.post {
+                    viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
+                }
+            }
+            viewBinding.imePlaceHolder.isVisible = imeVisible && imeHeight > 0
+
+            insets
+        }
 
         XMPPManager.addIncomingMessageListener { from, message, chat ->
             runOnUiThread {
                 messageAdapter.addMessage(MessageItem(message.body, false))
-                recyclerView.scrollToPosition(messageAdapter.itemCount - 1)
+                viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
             }
         }
 
@@ -52,7 +76,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
                     if (success) {
                         runOnUiThread {
                             messageAdapter.addMessage(MessageItem(messageText, true))
-                            recyclerView.scrollToPosition(messageAdapter.itemCount - 1)
+                            viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
                             viewBinding.messageEditText.text.clear()
                         }
                     } else {
