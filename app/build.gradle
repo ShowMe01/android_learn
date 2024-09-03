@@ -18,7 +18,7 @@ android {
         applicationId "com.dif.helloworld"
         minSdk 21
         targetSdk 34
-        versionCode 1
+        versionCode 2
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -288,11 +288,30 @@ dependencies {
 //    implementation("com.google.firebase:firebase-analytics")
     implementation(platform(firebase.bom))
     implementation(firebase.analytics)
-//    implementation(firebase.auth)
+    implementation(firebase.auth)
 //    implementation(firebase.database)
 //    implementation(firebase.config)
 //    implementation(firebase.messaging)
 //    implementation(firebase.performance)
 //    implementation(firebase.crashlytics)
 
+    //   android          : "org.igniterealtime.smack:smack-android:$smack_version",
+    //            tcp              : "org.igniterealtime.smack:smack-tcp:$smack_version",
+    //            im               : "org.igniterealtime.smack:smack-im:$smack_version",
+    //            extensions       : "org.igniterealtime.smack:smack-extensions:$smack_version",
+    //            extensionsandroid: "org.igniterealtime.smack:smack-android-extensions:$smack_version",
+    //            experimental     : "org.igniterealtime.smack:smack-experimental:$smack_version",
+    implementation(smack.android)
+    implementation(smack.tcp)
+    implementation(smack.im)
+    implementation(smack.extensions)
+    implementation(smack.extensionsandroid)
+    implementation(smack.experimental)
+    implementation("org.igniterealtime.smack:smack-sasl-provided:$smack_version")
+    implementation("org.igniterealtime.smack:smack-sasl-javax:$smack_version")
+//    implementation("org.igniterealtime.smack:smack-sasl-core:$smack_version")
+//    implementation("org.igniterealtime.smack:smack-websocket:$smack_version")
+}
+configurations.all {
+    exclude group: "xpp3", module: "xpp3_min"
 }

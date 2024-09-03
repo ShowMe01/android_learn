@@ -66,6 +66,12 @@
             android:name=".launchmode.SingleTopActivity"
             android:launchMode="singleTop" />
         <activity
+            android:name=".cmb.CMBChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".cmb.IMLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".launchmode.SingleTaskActivity"
             android:launchMode="singleTask"
             android:taskAffinity="com.example.task2" />

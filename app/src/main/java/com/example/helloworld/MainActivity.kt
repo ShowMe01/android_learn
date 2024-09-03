@@ -21,6 +21,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.helloworld.chat.ChatClientActivity
 import com.example.helloworld.chat.ChatServerActivity
+import com.example.helloworld.cmb.CMBChatActivity
+import com.example.helloworld.cmb.IMLoginActivity
 import com.example.helloworld.constraint.ConstraintActivity
 import com.example.helloworld.databinding.ActivityMainBinding
 import com.example.helloworld.firebase.FireTestActivity
@@ -51,15 +53,19 @@ class MainActivity : AppCompatActivity() {
         val windowInsetsController =
             WindowCompat.getInsetsController(window, window.decorView)
 //         Configure the behavior of the hidden system bars.
-        windowInsetsController?.systemBarsBehavior =
+        windowInsetsController.systemBarsBehavior =
             WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        windowInsetsController?.hide(WindowInsetsCompat.Type.statusBars());
+        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars());
 
 
         testLua()
         testGifWidget()
         testConstraintLayout()
         testNotification()
+
+        viewBinding.btnCMBIM.setOnClickListener {
+            startActivity(Intent(this, IMLoginActivity::class.java))
+        }
 
         viewBinding.btnFirebase.setOnClickListener {
             startActivity(Intent(this, FireTestActivity::class.java))
