@@ -56,22 +56,19 @@ class WindowInsetsActivity : AppCompatActivity() {
         }
 
         findViewById<View>(R.id.cutouts).setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                cutouts = !cutouts
-                val params = window.attributes
-                params.layoutInDisplayCutoutMode =
-                    if (cutouts) WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES else WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
-                window.attributes = params
-                refreshState()
-
-            }
+            cutouts = !cutouts
+            val params = window.attributes
+            params.layoutInDisplayCutoutMode =
+                if (cutouts) WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES else WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
+            window.attributes = params
+            refreshState()
         }
 
         findViewById<View>(R.id.statusColor).setOnClickListener {
             window.statusBarColor = colors[colorIndex]
-            colorIndex = (colorIndex+1) % colors.size
+            colorIndex = (colorIndex + 1) % colors.size
             refreshState()
-            
+
         }
     }
 
@@ -80,7 +77,8 @@ class WindowInsetsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.fitsSystemState).text = fitsSystem.toString()
         findViewById<TextView>(R.id.cutoutsState).text = cutouts.toString()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            findViewById<TextView>(R.id.statusColorState).text = Color.valueOf(colors[colorIndex]).toString()
+            findViewById<TextView>(R.id.statusColorState).text =
+                Color.valueOf(colors[colorIndex]).toString()
         }
 
 

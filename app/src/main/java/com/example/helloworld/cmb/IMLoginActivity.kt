@@ -36,7 +36,7 @@ class IMLoginActivity : BaseViewBindingActivity<ActivityLoginImBinding>() {
                     this.finish()
                 } else {
                     Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show()
-                    viewBinding.loginButton.isEnabled = false
+                    viewBinding.loginButton.isEnabled = true
                 }
             }
         }

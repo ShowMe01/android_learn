@@ -2,8 +2,8 @@ package com.example.helloworld.cmb
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -11,10 +11,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.helloworld.R
 import com.example.helloworld.base.BaseViewBindingActivity
 import com.example.helloworld.databinding.ActivityCmbChatBinding
+import com.example.helloworld.util.dp
 
 class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
 
@@ -39,25 +38,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         viewBinding.rv.adapter = messageAdapter
         viewBinding.rv.layoutManager = LinearLayoutManager(this)
 
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.root) { view, insets ->
-            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-            val imeHeight = imeInsets.bottom
-
-            Log.d("imeTest", "imeVisible:${imeVisible} , imeHeight:${imeHeight}")
-            if (imeVisible && imeHeight > 0) {
-                viewBinding.imePlaceHolder.updateLayoutParams<ViewGroup.LayoutParams> {
-                    height = imeHeight
-                }
-                viewBinding.rv.post {
-                    viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
-                }
-            }
-            viewBinding.imePlaceHolder.isVisible = imeVisible && imeHeight > 0
-
-            insets
-        }
+        setUpIme()
 
         XMPPManager.addIncomingMessageListener { from, message, chat ->
             runOnUiThread {
@@ -92,6 +73,34 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
             }
         }
         // 发送消息
+    }
+
+    private fun setUpIme() {
+        val params = window.attributes
+        params.layoutInDisplayCutoutMode =
+            WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_NEVER
+        window.attributes = params
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.root) { view, insets ->
+            val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
+            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val imeHeight = imeInsets.bottom
+
+
+
+            if (imeVisible && imeHeight > 0) {
+                viewBinding.imePlaceHolder.updateLayoutParams<ViewGroup.LayoutParams> {
+                    height = imeHeight + 1.dp.toInt()
+                }
+                viewBinding.rv.post {
+                    viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
+                }
+            }
+            viewBinding.imePlaceHolder.isVisible = imeVisible && imeHeight > 0
+
+            insets
+        }
     }
 
     override fun viewBinding(): ActivityCmbChatBinding {

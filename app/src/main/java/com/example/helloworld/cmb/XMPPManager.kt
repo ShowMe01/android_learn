@@ -80,35 +80,33 @@ object XMPPManager {
                         .build()
 
                 Log.d(TAG, "connect: before connect")
-                ReconnectionManager.getInstanceFor(connection).setFixedDelay(10)
+
                 connection = XMPPTCPConnection(config).apply {
                     addConnectionListener(object : ConnectionListener {
                         override fun connected(connection: XMPPConnection?) {
-                            super.connected(connection)
                             Log.d(TAG, "ConnectionListener connected: ")
                         }
 
                         override fun connecting(connection: XMPPConnection?) {
-                            super.connecting(connection)
                             Log.d(TAG, "ConnectionListener connecting: ")
 
                         }
 
                         override fun authenticated(connection: XMPPConnection?, resumed: Boolean) {
-                            super.authenticated(connection, resumed)
                             Log.d(TAG, "ConnectionListener authenticated: ")
                         }
 
                         override fun connectionClosed() {
-                            super.connectionClosed()
                             Log.d(TAG, "ConnectionListener connectionClosed: ")
                         }
 
                         override fun connectionClosedOnError(e: java.lang.Exception?) {
-                            super.connectionClosedOnError(e)
                             Log.d(TAG, "ConnectionListener connectionClosedOnError:  ${e}")
                         }
                     })
+                }
+                ReconnectionManager.getInstanceFor(connection).apply {
+                    enableAutomaticReconnection()
                 }
                 connection?.connect()
                 Log.d(TAG, "after connect: ")
