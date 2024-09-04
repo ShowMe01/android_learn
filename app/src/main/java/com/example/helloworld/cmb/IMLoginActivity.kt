@@ -25,8 +25,8 @@ class IMLoginActivity : BaseViewBindingActivity<ActivityLoginImBinding>() {
             XMPPManager.connect(
                 username,
                 password,
-                "chatdev.moond4rk.com",
-                "chatdev.moond4rk.com",
+                XMPPManager.DOMAIN,
+                XMPPManager.HOST,
                 5222
             ) { success, em ->
                 viewBinding.progressBar.visibility = View.GONE

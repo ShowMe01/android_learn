@@ -2,6 +2,7 @@ package com.example.helloworld.cmb
 
 import android.content.Context
 import android.content.Intent
+import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
@@ -29,7 +30,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         }
     }
 
-    private val to = "alice@chatdev.moond4rk.com"
+    private val to = "alice"
 
     private lateinit var messageAdapter: MessageAdapter
 
@@ -39,6 +40,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         viewBinding.rv.layoutManager = LinearLayoutManager(this)
 
         setUpIme()
+        initToolBar()
 
         XMPPManager.addIncomingMessageListener { from, message, chat ->
             runOnUiThread {
@@ -51,7 +53,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
             val messageText = viewBinding.messageEditText.text.toString()
             if (messageText.isNotEmpty()) {
                 XMPPManager.sendMessage(
-                    to,
+                    "${to}@${XMPPManager.DOMAIN}",
                     messageText
                 ) { success, error ->
                     if (success) {
@@ -73,6 +75,29 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
             }
         }
         // 发送消息
+    }
+
+    private fun initToolBar() {
+        setSupportActionBar(viewBinding.toolbar)
+        supportActionBar?.apply {
+            title = to
+            setDisplayHomeAsUpEnabled(true)
+            setDisplayShowHomeEnabled(true)
+        }
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
     }
 
     private fun setUpIme() {
