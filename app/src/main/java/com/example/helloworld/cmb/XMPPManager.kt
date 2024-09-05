@@ -3,7 +3,10 @@ package com.example.helloworld.cmb
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.example.helloworld.util.MainThreadExecutor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.asCoroutineDispatcher
 import org.jivesoftware.smack.AbstractXMPPConnection
 import org.jivesoftware.smack.ConnectionConfiguration
 import org.jivesoftware.smack.ConnectionListener
@@ -18,9 +21,13 @@ import org.jivesoftware.smack.packet.Message
 import org.jivesoftware.smack.packet.TopLevelStreamElement
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
+import org.jivesoftware.smackx.mam.MamManager
+import org.jivesoftware.smackx.mam.MamManager.MamQueryArgs
 import org.jivesoftware.smackx.ping.PingManager
 import org.jxmpp.jid.EntityFullJid
 import org.jxmpp.jid.impl.JidCreate
+import java.util.concurrent.Executors
+
 
 object XMPPManager {
 
@@ -29,13 +36,13 @@ object XMPPManager {
 
     private var state = ConnectionState.CLOSED
 
+    private var lastMsgId: String? = null
+
     const val HOST = "chatdev.moond4rk.com"
     const val DOMAIN = "chatdev.moond4rk.com"
-
     private val handlerThread = HandlerThread("XMPP-thread").also {
         it.start()
     }
-
 
     private val handler = Handler(handlerThread.looper) { msg ->
         when (msg.what) {
@@ -63,6 +70,10 @@ object XMPPManager {
             TRY_RECONNECT -> {
                 tryReconnectInternal()
             }
+
+            FETCH_HISTORY -> {
+                fetchHistoryInner(msg.obj as FetchMsgParams)
+            }
         }
         true
     }
@@ -71,6 +82,7 @@ object XMPPManager {
     private const val DISCONNECT = 2
     private const val SEND_MESSAGE = 3
     private const val TRY_RECONNECT = 4
+    private const val FETCH_HISTORY = 5
 
     private val connectionListener = object : ConnectionListener {
         override fun connected(connection: XMPPConnection?) {
@@ -248,6 +260,44 @@ object XMPPManager {
             val chatManager = ChatManager.getInstanceFor(it)
             chatManager.addIncomingListener(listener)
         }
+    }
+
+    fun fetchHistory(fetchMsgParams: FetchMsgParams) {
+        handler.sendMessage(handler.obtainMessage(FETCH_HISTORY, fetchMsgParams))
+    }
+
+    private fun fetchHistoryInner(params: FetchMsgParams) {
+
+        connection?.let {
+            val mamManager = MamManager.getInstanceFor(it)
+            val argsBuilder = MamQueryArgs.builder()
+                .limitResultsToJid(JidCreate.from(params.jid))
+                .setResultPageSizeTo(2)
+                .queryLastPage()
+            if (!lastMsgId.isNullOrEmpty()) {
+                argsBuilder.beforeUid(lastMsgId)
+            }
+            val mamQuery = mamManager.queryArchive(
+                argsBuilder
+                    .build()
+            )
+            val messages = mamQuery.messages
+            if (messages.isNotEmpty()) {
+                lastMsgId = messages.last().stanzaId
+            }
+
+            for (message in messages) {
+                Log.d(
+                    TAG,
+                    "fetchHistoryInner: msg:${message.body}, id: ${message.stanzaId} "
+                )
+            }
+
+            MainThreadExecutor.instance.post {
+                params.callback.invoke(messages)
+            }
+        }
+
     }
 
     fun onAppFront() {

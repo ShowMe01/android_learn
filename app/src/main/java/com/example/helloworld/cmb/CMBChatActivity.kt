@@ -2,6 +2,7 @@ package com.example.helloworld.cmb
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.view.WindowManager
@@ -42,18 +43,21 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         setUpIme()
         initToolBar()
 
+
         XMPPManager.addIncomingMessageListener { from, message, chat ->
+            Log.d(XMPPManager.TAG, "init: msgId:${message.stanzaId}")
             runOnUiThread {
                 messageAdapter.addMessage(MessageItem(message.body, false))
                 viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
             }
         }
 
+
         viewBinding.sendButton.setOnClickListener {
             val messageText = viewBinding.messageEditText.text.toString()
             if (messageText.isNotEmpty()) {
                 XMPPManager.sendMessage(
-                    "${to}@${XMPPManager.DOMAIN}",
+                    getJid(),
                     messageText
                 ) { success, error ->
                     if (success) {
@@ -77,10 +81,21 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         // 发送消息
     }
 
+    private fun getJid(): String {
+        return "${to}@${XMPPManager.DOMAIN}"
+    }
+
     private fun initToolBar() {
         setSupportActionBar(viewBinding.toolbar)
+        viewBinding.toolbarTitle.text = to
+        viewBinding.toolbarTitle.setOnClickListener {
+            /*XMPPManager.fetchHistory(FetchMsgParams(getJid(),{
+
+            }))*/
+        }
         supportActionBar?.apply {
-            title = to
+            title = ""
+            setDisplayShowTitleEnabled(false)
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
@@ -93,6 +108,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
                 onBackPressed()
                 return true
             }
+
 
             else -> {
                 return super.onOptionsItemSelected(item)

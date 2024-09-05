@@ -1,6 +1,8 @@
 package com.example.helloworld.cmb
 
-data class MessageItem(val message: String, val isFrom: Boolean)
+import org.jivesoftware.smack.packet.Message
+
+data class MessageItem(val message: String, val fromMe: Boolean)
 
 enum class ConnectionState {
     CLOSED,
@@ -24,3 +26,5 @@ data class ConnectParams(
     val messageBody: String,
     val callback: (Boolean, String?) -> Unit
 )
+
+data class FetchMsgParams(val jid: String, val callback: (List<Message>) -> Unit)

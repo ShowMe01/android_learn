@@ -16,7 +16,7 @@ class MessageAdapter(private val messages: MutableList<MessageItem>) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (messages[position].isFrom) VIEW_TYPE_FROM else VIEW_TYPE_TO
+        return if (messages[position].fromMe) VIEW_TYPE_FROM else VIEW_TYPE_TO
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
