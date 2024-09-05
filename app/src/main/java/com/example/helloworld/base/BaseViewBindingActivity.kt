@@ -6,12 +6,12 @@ import com.example.helloworld.launchmode.BaseActivity
 
 abstract class BaseViewBindingActivity<VB : ViewBinding> : BaseActivity() {
 
-    lateinit var viewBinding: VB
+    lateinit var vb: VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = viewBinding()
-        setContentView(viewBinding.root)
+        vb = viewBinding()
+        setContentView(vb.root)
         init()
     }
 

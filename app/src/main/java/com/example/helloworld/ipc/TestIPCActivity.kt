@@ -12,7 +12,7 @@ class TestIPCActivity : BaseViewBindingActivity<ActivityTestIpcactivityBinding>(
     }
 
     override fun init() {
-        viewBinding.btnBundle.setOnClickListener {
+        vb.btnBundle.setOnClickListener {
             val data = Bundle()
             data.putString("key1", "stringValue")
             startActivity(Intent(this, ReceiveBundleActivity::class.java).apply {
@@ -20,7 +20,7 @@ class TestIPCActivity : BaseViewBindingActivity<ActivityTestIpcactivityBinding>(
             })
         }
 
-        viewBinding.btnMessenger.setOnClickListener {
+        vb.btnMessenger.setOnClickListener {
             startActivity(Intent(this, ClientMessengerActivity::class.java))
         }
     }

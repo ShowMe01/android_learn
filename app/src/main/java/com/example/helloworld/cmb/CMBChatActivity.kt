@@ -37,8 +37,8 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
 
     override fun init() {
         messageAdapter = MessageAdapter(mutableListOf())
-        viewBinding.rv.adapter = messageAdapter
-        viewBinding.rv.layoutManager = LinearLayoutManager(this)
+        vb.rv.adapter = messageAdapter
+        vb.rv.layoutManager = LinearLayoutManager(this)
 
         setUpIme()
         initToolBar()
@@ -48,13 +48,13 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
             Log.d(XMPPManager.TAG, "init: msgId:${message.stanzaId}")
             runOnUiThread {
                 messageAdapter.addMessage(MessageItem(message.body, false))
-                viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
+                vb.rv.scrollToPosition(messageAdapter.itemCount - 1)
             }
         }
 
 
-        viewBinding.sendButton.setOnClickListener {
-            val messageText = viewBinding.messageEditText.text.toString()
+        vb.sendButton.setOnClickListener {
+            val messageText = vb.messageEditText.text.toString()
             if (messageText.isNotEmpty()) {
                 XMPPManager.sendMessage(
                     getJid(),
@@ -63,8 +63,8 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
                     if (success) {
                         runOnUiThread {
                             messageAdapter.addMessage(MessageItem(messageText, true))
-                            viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
-                            viewBinding.messageEditText.text.clear()
+                            vb.rv.scrollToPosition(messageAdapter.itemCount - 1)
+                            vb.messageEditText.text.clear()
                         }
                     } else {
                         runOnUiThread {
@@ -86,9 +86,9 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
     }
 
     private fun initToolBar() {
-        setSupportActionBar(viewBinding.toolbar)
-        viewBinding.toolbarTitle.text = to
-        viewBinding.toolbarTitle.setOnClickListener {
+        setSupportActionBar(vb.toolbar)
+        vb.toolbarTitle.text = to
+        vb.toolbarTitle.setOnClickListener {
             /*XMPPManager.fetchHistory(FetchMsgParams(getJid(),{
 
             }))*/
@@ -123,7 +123,7 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
         window.attributes = params
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        ViewCompat.setOnApplyWindowInsetsListener(viewBinding.root) { view, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(vb.root) { view, insets ->
             val imeVisible = insets.isVisible(WindowInsetsCompat.Type.ime())
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
             val imeHeight = imeInsets.bottom
@@ -131,14 +131,14 @@ class CMBChatActivity : BaseViewBindingActivity<ActivityCmbChatBinding>() {
 
 
             if (imeVisible && imeHeight > 0) {
-                viewBinding.imePlaceHolder.updateLayoutParams<ViewGroup.LayoutParams> {
+                vb.imePlaceHolder.updateLayoutParams<ViewGroup.LayoutParams> {
                     height = imeHeight + 1.dp.toInt()
                 }
-                viewBinding.rv.post {
-                    viewBinding.rv.scrollToPosition(messageAdapter.itemCount - 1)
+                vb.rv.post {
+                    vb.rv.scrollToPosition(messageAdapter.itemCount - 1)
                 }
             }
-            viewBinding.imePlaceHolder.isVisible = imeVisible && imeHeight > 0
+            vb.imePlaceHolder.isVisible = imeVisible && imeHeight > 0
 
             insets
         }

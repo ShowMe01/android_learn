@@ -10,17 +10,17 @@ class IMLoginActivity : BaseViewBindingActivity<ActivityLoginImBinding>() {
     override fun init() {
 
         getUser()?.let {
-            viewBinding.usernameEditText.setText(it.userid)
-            viewBinding.passwordEditText.setText(it.pwd)
+            vb.usernameEditText.setText(it.userid)
+            vb.passwordEditText.setText(it.pwd)
         }
 
-        viewBinding.loginButton.setOnClickListener {
-            val username = viewBinding.usernameEditText.text.toString()
-            val password = viewBinding.passwordEditText.text.toString()
+        vb.loginButton.setOnClickListener {
+            val username = vb.usernameEditText.text.toString()
+            val password = vb.passwordEditText.text.toString()
             // Here you would handle the login logic
 
-            viewBinding.progressBar.visibility = View.VISIBLE
-            viewBinding.loginButton.isEnabled = false
+            vb.progressBar.visibility = View.VISIBLE
+            vb.loginButton.isEnabled = false
 
             XMPPManager.connect(
                 username,
@@ -29,14 +29,14 @@ class IMLoginActivity : BaseViewBindingActivity<ActivityLoginImBinding>() {
                 XMPPManager.HOST,
                 5222
             ) { success, em ->
-                viewBinding.progressBar.visibility = View.GONE
+                vb.progressBar.visibility = View.GONE
                 if (success) {
-                    CMBChatActivity.start(this, username)
+                    IMMainActivity.start(this)
                     saveUser(username, password)
                     this.finish()
                 } else {
                     Toast.makeText(this, "登录失败", Toast.LENGTH_SHORT).show()
-                    viewBinding.loginButton.isEnabled = true
+                    vb.loginButton.isEnabled = true
                 }
             }
         }

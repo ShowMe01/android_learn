@@ -67,12 +67,12 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".cmb.CMBChatActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".cmb.IMLoginActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".launchmode.SingleTaskActivity"
             android:launchMode="singleTask"
@@ -221,6 +221,10 @@
             android:screenOrientation="landscape" />
 
         <activity android:name=".firebase.FireTestActivity" />
+
+        <activity
+            android:name=".cmb.IMMainActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

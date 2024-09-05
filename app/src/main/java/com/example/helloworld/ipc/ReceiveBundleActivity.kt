@@ -9,7 +9,7 @@ class ReceiveBundleActivity : BaseViewBindingActivity<ActivityReceiveBundleBindi
     override fun init() {
         val bundle = intent.getBundleExtra("keyExtra")
         val stringValue = bundle?.getString("key1")
-        viewBinding.tvInfo.text = stringValue.safe()
+        vb.tvInfo.text = stringValue.safe()
     }
 
     override fun viewBinding(): ActivityReceiveBundleBinding {
