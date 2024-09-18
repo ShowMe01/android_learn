@@ -225,6 +225,14 @@
         <activity
             android:name=".cmb.IMMainActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".room.WordRoomActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".room.NewWordActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

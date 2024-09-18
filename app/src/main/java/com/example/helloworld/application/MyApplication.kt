@@ -6,11 +6,20 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import com.example.helloworld.application.AppContext.getAppContext
+import com.example.helloworld.room.WordRepository
+import com.example.helloworld.room.WordRoomDatabase
 import com.tencent.mmkv.MMKV
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 
 class MyApplication : Application() {
     private val TAG = "MyApplication"
 
+    val applicationScope = CoroutineScope(SupervisorJob())
+
+
+    val database by lazy { WordRoomDatabase.getDataBase(this, applicationScope) }
+    val repository by lazy { WordRepository(database.wordDao()) }
 
     override fun onCreate() {
         super.onCreate()

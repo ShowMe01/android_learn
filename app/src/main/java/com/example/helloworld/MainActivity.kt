@@ -33,6 +33,7 @@ import com.example.helloworld.launchmode.StartActivity
 import com.example.helloworld.layoutinflater.LayoutInflaterActivity
 import com.example.helloworld.media.MediaActivity
 import com.example.helloworld.notification.NotificationUtil
+import com.example.helloworld.room.WordRoomActivity
 import com.example.helloworld.rv.CoverFlowActivity
 import com.example.helloworld.rv.RvActivity
 import com.example.helloworld.screenshot.GetTopActivity
@@ -62,6 +63,10 @@ class MainActivity : AppCompatActivity() {
         testGifWidget()
         testConstraintLayout()
         testNotification()
+
+        viewBinding.btnRoom.setOnClickListener {
+            startActivity(Intent(this, WordRoomActivity::class.java))
+        }
 
         viewBinding.btnCMBIM.setOnClickListener {
             startActivity(Intent(this, IMLoginActivity::class.java))

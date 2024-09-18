@@ -73,6 +73,14 @@
                     app:layout_constraintLeft_toRightOf="@id/btn_web"
                     app:layout_constraintTop_toBottomOf="@id/btn_constraints" />
 
+                <Button
+                    android:id="@+id/btnRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Room"
+                    android:textAllCaps="false"
+                    app:layout_constraintLeft_toRightOf="@id/btnIme"
+                    app:layout_constraintTop_toBottomOf="@id/btnCMB_IM" />
 
                 <Button
                     android:id="@+id/btnIme"
