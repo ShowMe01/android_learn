@@ -8,6 +8,8 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 
 
 @Database(entities = arrayOf(Word::class), version = 1, exportSchema = false)
@@ -18,6 +20,11 @@ abstract class WordRoomDatabase : RoomDatabase() {
     companion object {
 
         const val TAG = "WordRoomDatabase"
+
+        private const val ENCRYPT_DB_NAME = "word_database_2"
+        private const val DB_NAME = "word_database"
+        private val passphrase = SQLiteDatabase.getBytes("your_secure_key".toCharArray())
+        private val factory = SupportFactory(passphrase)
 
         @Volatile
         private var INSTANCE: WordRoomDatabase? = null
@@ -30,10 +37,11 @@ abstract class WordRoomDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     WordRoomDatabase::class.java,
-                    "word_database"
+                    DB_NAME
                 ).addCallback(
                     WordDatabaseCallback(scope)
-                ).build()
+                )
+                    .build()
                 INSTANCE = instance
                 instance
             }

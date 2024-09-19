@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 
@@ -22,4 +23,13 @@ interface WordDao {
 
     @Query("DELETE FROM word_table")
     suspend fun deleteAll()
+
+    @Query("DELETE FROM word_table WHERE word = :word")
+    suspend fun deleteWord(word: String)
+
+    @Delete
+    suspend fun deleteWord(word: Word)
+
+    @Update
+    suspend fun updateWord(word: Word)
 }
