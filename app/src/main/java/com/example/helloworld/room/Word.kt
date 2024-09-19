@@ -9,5 +9,6 @@ class Word(
     @PrimaryKey @ColumnInfo(name = "word") val word: String,
     @ColumnInfo(name = "create_time") val createTime: Long,
     @ColumnInfo(name = "length") val length: Int,
+    @ColumnInfo(name = "location") val location: String? = null
 ) {
 }

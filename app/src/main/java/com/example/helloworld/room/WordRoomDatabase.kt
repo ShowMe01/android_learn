@@ -7,13 +7,21 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import dev.matrix.roomigrant.GenerateRoomMigrations
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 
 
-@Database(entities = arrayOf(Word::class), version = 3, exportSchema = false)
+/**
+ * 手动迁移了1、2、3
+ * @GenerateRoomMigrations 、自动迁移了 3、4
+ */
+@Database(
+    entities = [Word::class], version = 4, exportSchema = true,
+)
+@GenerateRoomMigrations
 abstract class WordRoomDatabase : RoomDatabase() {
 
     abstract fun wordDao(): WordDao
@@ -57,7 +65,8 @@ abstract class WordRoomDatabase : RoomDatabase() {
                     context.applicationContext, WordRoomDatabase::class.java, DB_NAME
                 ).addCallback(
                     WordDatabaseCallback(scope)
-                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3).build()
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3, *WordRoomDatabase_Migrations.build())
+                    .build()
                 INSTANCE = instance
                 instance
             }
