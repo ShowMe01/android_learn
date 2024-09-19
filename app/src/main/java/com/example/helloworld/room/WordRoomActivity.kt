@@ -41,7 +41,7 @@ class WordRoomActivity : BaseViewBindingActivity<ActivityWordRoomBinding>() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
             data?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let {
-                val word = Word(it)
+                val word = Word(it, createTime = System.currentTimeMillis(), length = it.length)
                 wordViewModel.insert(word)
             }
         } else {
